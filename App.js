@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import { StyleSheet, Text, View } from 'react-native'
 import DeckListView from './components/DeckListView'
 
 export default class App extends React.Component {
@@ -8,7 +8,7 @@ export default class App extends React.Component {
       <View style={styles.container}>
         <DeckListView />
       </View>
-    );
+    )
   }
 }
 
@@ -19,4 +19,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-});
+})
