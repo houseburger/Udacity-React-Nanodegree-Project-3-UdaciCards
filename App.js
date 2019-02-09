@@ -1,7 +1,8 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-
+import { createAppContainer, createStackNavigator } from 'react-navigation'
 import DeckListView from './components/DeckListView'
+import IndividualDeckView from './components/IndividualDeckView'
 
 // Redux
 import { createStore } from 'redux'
@@ -16,12 +17,39 @@ const store = createStore(reducer, middleware)
 // const Context = React.createContext()
 
 
+const MainNavigator = createStackNavigator({
+  // {
+    DeckListView: {
+      screen: DeckListView,
+      // navigationOptions: {
+      //   tabBarLabel: 'Decks',
+      // }
+    },
+    IndividualDeckView: {
+      screen: IndividualDeckView,
+  //     // navigationOptions: {
+  //     //   tabBarLabel: 'Deck',
+  //     //   headerStyle: {
+  //     //     backgroundColor: 'coral'
+  //     //   }
+      // }
+    },
+  // },
+  // {
+  //   initialRouteName: "DeckListView"
+  // }
+})
+
+const AppContainer = createAppContainer(MainNavigator)
+
+
 export default class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
         <View style={styles.container}>
-          <DeckListView />
+          <AppContainer />
+          {/* <DeckListView /> */}
         </View>
       </Provider>
     )
@@ -31,8 +59,8 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#b93fb3',
+    // alignItems: 'flex-start',
+    // justifyContent: 'center',
   },
 })
