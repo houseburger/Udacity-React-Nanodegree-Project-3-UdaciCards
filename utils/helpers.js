@@ -1,11 +1,18 @@
 import { AsyncStorage } from 'react-native'
 import _ from 'lodash'
+import { fakeDB } from './fakeDB'
 
 const STORAGE_KEY = 'UdaciCards:decks'
 
-
 export function getDecks() {
   return AsyncStorage.getItem(STORAGE_KEY)
+    .then((data) => {
+      const decks = JSON.parse(data)
+      // console.log('DUDE: ', decks)
+      // console.log('Fake DB: ', fakeDB)
+      // return decks
+      return fakeDB
+    })
 }
 
 export function getDeck(id) {

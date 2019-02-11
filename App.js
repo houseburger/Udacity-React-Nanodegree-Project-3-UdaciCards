@@ -11,7 +11,6 @@ import reducer from './reducers'
 import middleware from './middleware'
 
 
-
 const store = createStore(reducer, middleware)
 
 // const Context = React.createContext()
@@ -44,12 +43,12 @@ const AppContainer = createAppContainer(MainNavigator)
 
 
 export default class App extends React.Component {
+
   render() {
     return (
       <Provider store={store}>
         <View style={styles.container}>
           <AppContainer />
-          {/* <DeckListView /> */}
         </View>
       </Provider>
     )
@@ -60,7 +59,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#b93fb3',
-    // alignItems: 'flex-start',
-    // justifyContent: 'center',
   },
 })

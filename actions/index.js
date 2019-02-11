@@ -1,12 +1,24 @@
+import { getDecks } from '../utils/helpers'
+
 export const RECEIVE_DECKS = 'RECEIVE_DECKS'
 export const GET_DECK      = 'GET_DECK'
 export const ADD_DECK      = 'ADD_DECK'
 export const ADD_CARD      = 'ADD-CARD'
 
-export function receiveDecks(decks) {
+function receiveDecks(decks) {
   return {
     type: RECEIVE_DECKS,
     decks
+  }
+}
+
+export function handleInitialData(){
+  return (dispatch) => {
+    return getDecks()
+      .then((decks) => {
+        // console.log('handleInitialData: ', decks)
+        dispatch(receiveDecks(decks))
+      })
   }
 }
 
