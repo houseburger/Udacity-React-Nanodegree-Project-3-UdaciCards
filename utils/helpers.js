@@ -8,10 +8,8 @@ export function getDecks() {
   return AsyncStorage.getItem(STORAGE_KEY)
     .then((data) => {
       const decks = JSON.parse(data)
-      // console.log('DUDE: ', decks)
-      // console.log('Fake DB: ', fakeDB)
-      // return decks
-      return fakeDB
+      return decks
+      // return fakeDB
     })
 }
 

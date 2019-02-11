@@ -13,27 +13,31 @@ class DeckListView extends Component {
   }
 
   buttonPressed = () => {
-    // console.log('Props: ', this.props)
-    console.log('Decks: ', this.props.decks)
-    // this.props.navigation.navigate('IndividualDeckView')
+    // console.log('Decks: ', this.props.decks)
+    this.props.navigation.navigate('IndividualDeckView')
   }
 
+
   render() {
-    let { loading } = this.props
+    let { loading, decks } = this.props
+
     return (
       <View style={styles.container}>
-        <Text>Deck List View</Text>
-        <TouchableOpacity onPress={() => this.buttonPressed()}>
-          <Text>Go to Individual Deck View</Text>
-        </TouchableOpacity>
-        {/* <br/> */}
-        <Text>{
-          // this.props.decks !== undefined
+        {
           loading === true
-            ? 'Deck = empty!'
-            : JSON.stringify(this.props.decks)
-          // JSON.stringify(this.props.decks) || 'Deck = empty!'
-        }</Text>
+            ? <Text>'Deck = empty!'</Text>
+            : <View style={styles.dude}>
+              {Object.values(decks).map(deck => (
+                <View key={deck.title} style={styles.deck}>
+                  <Text>{deck.title}</Text>
+                  <Text>{deck.questions.length + ' cards'}</Text>
+                  <TouchableOpacity onPress={() => this.buttonPressed()}>
+                    <Text>Go to Individual Deck View</Text>
+                  </TouchableOpacity>
+                </View>
+              ))}
+            </View>
+        }
       </View>
     )
   }
@@ -48,14 +52,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     color: '#fff'
   },
+  deck: {
+    backgroundColor: '#b71845',
+    margin: 20,
+  },
+  dude: {
+    backgroundColor: '#b93fb3'
+  }
 })
 
 function mapStateToProps({ decks }) {
-  console.log('WTF: ', decks)
   return {
     decks,
-    // loading: (Object.keys(decks).length === 0 && decks.constructor === Object), // check whether data is already loaded
-    loading: 1 > 2
+    loading: (Object.keys(decks).length === 0 && decks.constructor === Object), // check whether data is already loaded
   }
 }
 
