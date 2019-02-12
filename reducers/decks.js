@@ -21,8 +21,9 @@ function decks (state = fakeDB, action) {
     case ADD_DECK :
       return {
         ...state,
-        [action.deck]: {
-          title: action.deck
+        [action.title]: {
+          title: action.title,
+          questions: []
         }
       }
     case ADD_CARD :

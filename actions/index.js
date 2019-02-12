@@ -1,4 +1,7 @@
-import { getDecks } from '../utils/helpers'
+import {
+  getDecks,
+  saveDeckTitle,
+} from '../utils/helpers'
 
 export const RECEIVE_DECKS = 'RECEIVE_DECKS'
 export const GET_DECK      = 'GET_DECK'
@@ -21,6 +24,16 @@ export function handleInitialData(){
   }
 }
 
+export function handleAddingDeck(title) {
+  return (dispatch) => {
+    return saveDeckTitle(title)
+    .then(() => {
+      dispatch(addDeck(title))
+    })
+  }
+}
+
+
 export function getDeck(id) {
   return {
     type: GET_DECK,
@@ -28,7 +41,8 @@ export function getDeck(id) {
   }
 }
 
-export function addDeck(title) {
+
+function addDeck(title) {
   return {
     type: ADD_DECK,
     title

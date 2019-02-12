@@ -21,7 +21,7 @@ const store = createStore(reducer, middleware)
 
 const MainNavigator = createStackNavigator({
   // {
-    DeckList: {
+    Home: {
       screen: DeckList,
       navigationOptions: {
         title: 'Decks',

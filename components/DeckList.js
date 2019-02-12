@@ -21,6 +21,17 @@ class DeckList extends Component {
     }
   }
 
+  showDeckLength = (deckLength) => {
+    switch(true) {
+      case deckLength === 1 :
+        return '1 card'
+      case deckLength > 1 :
+        return `${deckLength} cards`
+      default : // = 0
+        return 'No cards'
+    }
+  }
+
   componentDidMount() {
     this.props.dispatch(handleInitialData()) // at first can be empty/undefined!
   }
@@ -44,8 +55,10 @@ class DeckList extends Component {
             : <View style={styles.dude}>
               {Object.values(decks).map(deck => (
                 <TouchableOpacity onPress={() => this.buttonPressed(deck.title)} key={deck.title} style={styles.deck}>
+                  {console.log('Deck: ', deck)}
                   <Text>{deck.title}</Text>
-                  <Text>{deck.questions.length + ' cards'}</Text>
+                  {/* <Text>{deck.questions.length + ' cards'}</Text> */}
+                  {/* <Text>{this.showDeckLength(deck.questions.length)}</Text> */}
                 </TouchableOpacity>
               ))}
             </View>

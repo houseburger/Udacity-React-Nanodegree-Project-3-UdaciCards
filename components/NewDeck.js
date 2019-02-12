@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
-import { addDeck } from '../actions'
+import { handleAddingDeck } from '../actions'
 
 class NewDeck extends Component {
 
@@ -10,7 +10,9 @@ class NewDeck extends Component {
   }
 
   handleSubmit = () => {
-    this.props.dispatch(addDeck(this.state.title))
+    this.props.dispatch(handleAddingDeck(this.state.title))
+    //TODO: make sure it only navigates to Home AFTER saving!!!!
+    this.props.navigation.navigate('Home')
   }
 
   render() {

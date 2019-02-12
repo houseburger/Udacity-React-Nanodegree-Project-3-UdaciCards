@@ -25,7 +25,12 @@ export function saveDeckTitle(title) {
   return AsyncStorage.getItem(STORAGE_KEY)
     .then((data) => {
       const decks = JSON.parse(data)
-      let deck = { title: title}
+      let deck = {
+        [title]: {
+          title: title,
+          questions: []
+        }
+      }
       let newData = { ...decks,  ...deck }
       AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(newData))
     })
@@ -35,7 +40,10 @@ export function addCardToDeck(title, card) {
   return AsyncStorage.getItem(STORAGE_KEY)
     .then((data) => {
       let decks = JSON.parse(data)
-      decks[title] = { ...decks[title], questions: card }
+      decks[title] = {
+        ...decks[title],
+        questions: decks[title].questions.concat([card])
+      }
       AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(decks))
     })
 }
