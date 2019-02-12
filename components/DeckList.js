@@ -13,9 +13,10 @@ class DeckList extends Component {
       headerRight: (
         <Button
           onPress={() => navigation.navigate('NewDeck')}
-          title="Add"
+          title="Add Deck"
           color='#fa8072'
         />
+        // TODO: add Icon to this button!
       )
     }
   }
