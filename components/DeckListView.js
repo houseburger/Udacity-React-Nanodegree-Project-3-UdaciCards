@@ -12,9 +12,11 @@ class DeckListView extends Component {
     this.props.dispatch(handleInitialData()) // at first can be empty/undefined!
   }
 
-  buttonPressed = () => {
+  buttonPressed = (deckID) => {
     // console.log('Decks: ', this.props.decks)
-    this.props.navigation.navigate('IndividualDeckView')
+    this.props.navigation.navigate('IndividualDeckView', {
+      id: deckID
+    })
   }
 
 
@@ -25,13 +27,13 @@ class DeckListView extends Component {
       <View style={styles.container}>
         {
           loading === true
-            ? <Text>'Deck = empty!'</Text>
+            ? <Text>No Decks yet! Please create a deck!</Text>
             : <View style={styles.dude}>
               {Object.values(decks).map(deck => (
                 <View key={deck.title} style={styles.deck}>
                   <Text>{deck.title}</Text>
                   <Text>{deck.questions.length + ' cards'}</Text>
-                  <TouchableOpacity onPress={() => this.buttonPressed()}>
+                  <TouchableOpacity onPress={() => this.buttonPressed(deck.title)}>
                     <Text>Go to Individual Deck View</Text>
                   </TouchableOpacity>
                 </View>
