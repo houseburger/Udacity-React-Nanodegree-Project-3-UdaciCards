@@ -30,13 +30,10 @@ class DeckListView extends Component {
             ? <Text>No Decks yet! Please create a deck!</Text>
             : <View style={styles.dude}>
               {Object.values(decks).map(deck => (
-                <View key={deck.title} style={styles.deck}>
+                <TouchableOpacity onPress={() => this.buttonPressed(deck.title)} key={deck.title} style={styles.deck}>
                   <Text>{deck.title}</Text>
                   <Text>{deck.questions.length + ' cards'}</Text>
-                  <TouchableOpacity onPress={() => this.buttonPressed(deck.title)}>
-                    <Text>Go to Individual Deck View</Text>
-                  </TouchableOpacity>
-                </View>
+                </TouchableOpacity>
               ))}
             </View>
         }
@@ -57,6 +54,9 @@ const styles = StyleSheet.create({
   deck: {
     backgroundColor: '#b71845',
     margin: 20,
+    padding: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   dude: {
     backgroundColor: '#b93fb3'
