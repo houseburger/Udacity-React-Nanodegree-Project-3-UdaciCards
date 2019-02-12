@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, Button, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 
 // Data
@@ -7,6 +7,18 @@ import { handleInitialData } from '../actions'
 
 
 class DeckList extends Component {
+
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerRight: (
+        <Button
+          onPress={() => navigation.navigate('NewDeck')}
+          title="Add"
+          color='#fa8072'
+        />
+      )
+    }
+  }
 
   componentDidMount() {
     this.props.dispatch(handleInitialData()) // at first can be empty/undefined!

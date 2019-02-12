@@ -5,6 +5,7 @@ import DeckList from './components/DeckList'
 import IndividualDeck from './components/IndividualDeck'
 import NewQuestion from './components/NewQuestion'
 import Quiz from './components/Quiz'
+import NewDeck from './components/NewDeck'
 
 // Redux
 import { createStore } from 'redux'
@@ -35,6 +36,12 @@ const MainNavigator = createStackNavigator({
         }
       }
     },
+    NewDeck: {
+      screen: NewDeck,
+      navigationOptions: {
+        title: 'New Deck'
+      }
+    },
     NewQuestion: {
       screen: NewQuestion,
       navigationOptions: {
@@ -46,7 +53,7 @@ const MainNavigator = createStackNavigator({
       navigationOptions: {
         title: 'Quiz'
       }
-    }
+    },
   // },
   // {
   //   initialRouteName: "DeckList"
