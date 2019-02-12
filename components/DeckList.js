@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { handleInitialData } from '../actions'
 
 
-class DeckListView extends Component {
+class DeckList extends Component {
 
   componentDidMount() {
     this.props.dispatch(handleInitialData()) // at first can be empty/undefined!
@@ -14,7 +14,7 @@ class DeckListView extends Component {
 
   buttonPressed = (deckID) => {
     // console.log('Decks: ', this.props.decks)
-    this.props.navigation.navigate('IndividualDeckView', {
+    this.props.navigation.navigate('IndividualDeck', {
       id: deckID
     })
   }
@@ -70,4 +70,4 @@ function mapStateToProps({ decks }) {
   }
 }
 
-export default connect(mapStateToProps)(DeckListView)
+export default connect(mapStateToProps)(DeckList)

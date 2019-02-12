@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { getDeck } from '../actions'
 
-class IndividualDeckListView extends Component {
+class IndividualDeckList extends Component {
 
   showDeckLength = (deckLength) => {
     switch(true) {
@@ -26,15 +26,14 @@ class IndividualDeckListView extends Component {
     let { deck } = this.props
     return (
       <View style={styles.container}>
-        <Text>Individual Deck View</Text>
         <Text>{deck.title}</Text>
         <Text>{this.showDeckLength(deck.questions.length)}</Text>
-        <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('NewQuestionView', {
+        <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('NewQuestion', {
           id: deck.title
         })}>
           <Text>Add Card</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('QuizView', {
+        <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Quiz', {
           id: deck.title
         })}>
           <Text>Start Quiz</Text>
@@ -68,4 +67,4 @@ function mapStateToProps( { decks }, props ) {
   }
 }
 
-export default connect(mapStateToProps)(IndividualDeckListView)
+export default connect(mapStateToProps)(IndividualDeckList)
