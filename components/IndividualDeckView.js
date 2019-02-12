@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
+import { getDeck } from '../actions'
 
 class IndividualDeckListView extends Component {
 
@@ -17,6 +18,8 @@ class IndividualDeckListView extends Component {
 
   componentDidMount() {
     console.log('Individual Deck View Loaded, WTF??? ')
+    // let id = props.navigation.getParam('id', 'No ID')
+    // this.props.dispatch(getDeck(id))
   }
 
   render() {
@@ -26,6 +29,16 @@ class IndividualDeckListView extends Component {
         <Text>Individual Deck View</Text>
         <Text>{deck.title}</Text>
         <Text>{this.showDeckLength(deck.questions.length)}</Text>
+        <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('NewQuestionView', {
+          id: deck.title
+        })}>
+          <Text>Add Card</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('QuizView', {
+          id: deck.title
+        })}>
+          <Text>Start Quiz</Text>
+        </TouchableOpacity>
       </View>
     )
   }
@@ -39,8 +52,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  button: {
+    backgroundColor: '#7bc043',
+    padding: 10,
+    margin: 20
+  }
 })
 
+// could also use AsyncStorage functions, but this is better!
 function mapStateToProps( { decks }, props ) {
   let id = props.navigation.getParam('id', 'No ID')
   let deck = Object.values(decks).filter(deck => deck.title === id)

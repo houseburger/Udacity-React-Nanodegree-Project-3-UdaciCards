@@ -3,6 +3,8 @@ import { StyleSheet, Text, View } from 'react-native'
 import { createAppContainer, createStackNavigator } from 'react-navigation'
 import DeckListView from './components/DeckListView'
 import IndividualDeckView from './components/IndividualDeckView'
+import NewQuestionView from './components/NewQuestionView'
+import QuizView from './components/QuizView'
 
 // Redux
 import { createStore } from 'redux'
@@ -20,19 +22,31 @@ const MainNavigator = createStackNavigator({
   // {
     DeckListView: {
       screen: DeckListView,
-      // navigationOptions: {
-      //   tabBarLabel: 'Decks',
-      // }
+      navigationOptions: {
+        title: 'Decks',
+      }
     },
     IndividualDeckView: {
       screen: IndividualDeckView,
-  //     // navigationOptions: {
-  //     //   tabBarLabel: 'Deck',
-  //     //   headerStyle: {
-  //     //     backgroundColor: 'coral'
-  //     //   }
-      // }
+      navigationOptions: {
+        title: 'Deck',
+        headerStyle: {
+          backgroundColor: '#00ff00'
+        }
+      }
     },
+    NewQuestionView: {
+      screen: NewQuestionView,
+      navigationOptions: {
+        title: 'New Card'
+      }
+    },
+    QuizView: {
+      screen: QuizView,
+      navigationOptions: {
+        title: 'Quiz'
+      }
+    }
   // },
   // {
   //   initialRouteName: "DeckListView"
