@@ -33,7 +33,8 @@ class IndividualDeckList extends Component {
         })}>
           <Text>Add Card</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Quiz', {
+        <TouchableOpacity disabled={deck.questions.length === 0} style={styles.button} onPress={() => this.props.navigation.navigate('Quiz', {
+          // TODO: already disabled, but add styling for disabled!!!
           id: deck.title
         })}>
           <Text>Start Quiz</Text>

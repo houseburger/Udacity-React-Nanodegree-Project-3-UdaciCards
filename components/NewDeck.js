@@ -12,6 +12,7 @@ class NewDeck extends Component {
   handleSubmit = () => {
     this.props.dispatch(handleAddingDeck(this.state.title))
     //TODO: make sure it only navigates to Home AFTER saving!!!!
+    // TODO: check whether saves in AsyncStorage
     this.props.navigation.navigate('Home')
   }
 
