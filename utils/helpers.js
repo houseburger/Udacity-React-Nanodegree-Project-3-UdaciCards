@@ -44,6 +44,7 @@ export function addCardToDeck(title, card) {
         ...decks[title],
         questions: decks[title].questions.concat([card])
       }
+      console.log('AsyncStorage: ', decks)
       AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(decks))
     })
 }

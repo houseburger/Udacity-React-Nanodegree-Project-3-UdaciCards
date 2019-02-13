@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native'
-// import {  }
+import { handleAddingCard } from '../actions'
+import { connect } from 'react-redux'
 
 class NewCard extends Component {
 
@@ -18,6 +19,17 @@ class NewCard extends Component {
 
   handleSubmit = () => {
     console.log('state: ', this.state)
+    console.log('ID: ', this.props.id)
+    let card = {
+      question: this.state.question,
+      answer: this.state.answer
+    }
+    this.props.dispatch(handleAddingCard(this.props.id, card))
+    //TODO: make sure it only navigates to Home AFTER saving!!!!
+    // TODO: check whether saves in AsyncStorage
+    this.props.navigation.navigate('IndividualDeck', {
+      id: this.props.id
+    })
   }
 
   render() {
@@ -59,4 +71,10 @@ const styles = StyleSheet.create({
   }
 })
 
-export default NewCard
+function mapStateToProps(state, props) {
+  return {
+    id: props.navigation.getParam('id', 'No ID')
+  }
+}
+
+export default connect(mapStateToProps)(NewCard)

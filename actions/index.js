@@ -1,6 +1,7 @@
 import {
   getDecks,
   saveDeckTitle,
+  addCardToDeck,
 } from '../utils/helpers'
 
 export const RECEIVE_DECKS = 'RECEIVE_DECKS'
@@ -33,6 +34,15 @@ export function handleAddingDeck(title) {
   }
 }
 
+export function handleAddingCard(title, card) {
+  return (dispatch) => {
+    return addCardToDeck(title, card)
+      .then(() => {
+        dispatch(addCard(title, card))
+      })
+  }
+}
+
 
 export function getDeck(id) {
   return {
@@ -49,7 +59,7 @@ function addDeck(title) {
   }
 }
 
-export function addCard(title, card) {
+function addCard(title, card) {
   return {
     type: ADD_CARD,
     title,
