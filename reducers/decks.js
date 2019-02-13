@@ -5,11 +5,8 @@ import {
   ADD_CARD,
 } from '../actions'
 
-import { fakeDB } from '../utils/fakeDB'
 
-
-// function decks (state = {}, action) {
-function decks (state = fakeDB, action) {
+function decks (state = {}, action) {
   switch(action.type) {
     case RECEIVE_DECKS :
       return {

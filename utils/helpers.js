@@ -1,6 +1,5 @@
 import { AsyncStorage } from 'react-native'
 import _ from 'lodash'
-import { fakeDB } from './fakeDB'
 
 const STORAGE_KEY = 'UdaciCards:decks'
 
@@ -9,7 +8,6 @@ export function getDecks() {
     .then((data) => {
       const decks = JSON.parse(data)
       return decks
-      // return fakeDB
     })
 }
 
@@ -44,7 +42,6 @@ export function addCardToDeck(title, card) {
         ...decks[title],
         questions: decks[title].questions.concat([card])
       }
-      console.log('AsyncStorage: ', decks)
       AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(decks))
     })
 }

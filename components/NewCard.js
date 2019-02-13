@@ -69,8 +69,7 @@ const styles = StyleSheet.create({
   }
 })
 
-// even if empty, need it to insert before mapDispatchToProps
-function mapStateToProps() { return {} }
+function mapStateToProps() { return {} } // even if empty, need it to insert before mapDispatchToProps
 
 function mapDispatchToProps(dispatch, { navigation }) {
   const id = navigation.getParam('id', 'No ID')
