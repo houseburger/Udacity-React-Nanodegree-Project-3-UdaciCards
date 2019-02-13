@@ -61,8 +61,8 @@ const styles = StyleSheet.create({
 
 // could also use AsyncStorage functions, but this is better!
 function mapStateToProps( { decks }, props ) {
-  let id = props.navigation.getParam('id', 'No ID')
-  let deck = Object.values(decks).filter(deck => deck.title === id)
+  const id = props.navigation.getParam('id', 'No ID')
+  const deck = Object.values(decks).filter(deck => deck.title === id)
   return {
     deck: deck[0]
   }
