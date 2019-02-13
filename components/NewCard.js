@@ -18,18 +18,16 @@ class NewCard extends Component {
   }
 
   handleSubmit = () => {
-    console.log('state: ', this.state)
-    console.log('ID: ', this.props.id)
+    let { addCard, goBack } = this.props
     let card = {
       question: this.state.question,
       answer: this.state.answer
     }
-    this.props.dispatch(handleAddingCard(this.props.id, card))
+
+    addCard(card)
     //TODO: make sure it only navigates to Home AFTER saving!!!!
     // TODO: check whether saves in AsyncStorage
-    this.props.navigation.navigate('IndividualDeck', {
-      id: this.props.id
-    })
+    goBack()
   }
 
   render() {
@@ -71,10 +69,18 @@ const styles = StyleSheet.create({
   }
 })
 
-function mapStateToProps(state, props) {
+function mapStateToProps() { // even if empty, need it to insert before mapDispatchToProps
+  return {}
+}
+
+function mapDispatchToProps(dispatch, { navigation }) {
+  const id = navigation.getParam('id', 'No ID')
   return {
-    id: props.navigation.getParam('id', 'No ID')
+    addCard: (card) => dispatch(handleAddingCard(id, card)),
+    goBack: () => navigation.navigate('IndividualDeck', {
+      id,
+    }),
   }
 }
 
-export default connect(mapStateToProps)(NewCard)
+export default connect(mapStateToProps, mapDispatchToProps)(NewCard)
