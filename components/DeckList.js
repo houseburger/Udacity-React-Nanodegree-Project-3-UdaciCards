@@ -33,14 +33,11 @@ class DeckList extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(handleInitialData()) // at first can be empty/undefined!
+    this.props.getInitialData() // at first can be empty/undefined!
   }
 
-  buttonPressed = (deckID) => {
-    // console.log('Decks: ', this.props.decks)
-    this.props.navigation.navigate('IndividualDeck', {
-      id: deckID
-    })
+  buttonPressed = (id) => {
+    this.props.goToDeck(id)
   }
 
 
@@ -55,10 +52,8 @@ class DeckList extends Component {
             : <View style={styles.dude}>
               {Object.values(decks).map(deck => (
                 <TouchableOpacity onPress={() => this.buttonPressed(deck.title)} key={deck.title} style={styles.deck}>
-                  {console.log('Deck: ', deck)}
                   <Text>{deck.title}</Text>
-                  {/* <Text>{deck.questions.length + ' cards'}</Text> */}
-                  {/* <Text>{this.showDeckLength(deck.questions.length)}</Text> */}
+                  <Text>{this.showDeckLength(deck.questions.length)}</Text>
                 </TouchableOpacity>
               ))}
             </View>
@@ -96,4 +91,13 @@ function mapStateToProps({ decks }) {
   }
 }
 
-export default connect(mapStateToProps)(DeckList)
+function mapDispatchToProps(dispatch, { navigation }) {
+  return {
+    goToDeck: (id) => navigation.navigate('IndividualDeck', {
+      id,
+    }),
+    getInitialData: () => dispatch(handleInitialData())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DeckList)
