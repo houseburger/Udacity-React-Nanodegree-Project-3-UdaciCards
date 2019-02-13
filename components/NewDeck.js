@@ -10,10 +10,11 @@ class NewDeck extends Component {
   }
 
   handleSubmit = () => {
-    this.props.dispatch(handleAddingDeck(this.state.title))
+    let { goHome, addDeck } = this.props
+    addDeck(this.state.title)
     //TODO: make sure it only navigates to Home AFTER saving!!!!
     // TODO: check whether saves in AsyncStorage
-    this.props.navigation.navigate('Home')
+    goHome()
   }
 
   render() {
@@ -24,7 +25,7 @@ class NewDeck extends Component {
           style={styles.input}
           onChangeText={(title) => this.setState({title})}
           value={this.state.title}
-          placeholder='DUDE WTF?'
+          placeholder='Title of new deck'
         />
         <TouchableOpacity style={styles.button} onPress={() => this.handleSubmit()}>
           <Text>Create Deck</Text>
@@ -49,8 +50,14 @@ const styles = StyleSheet.create({
   }
 })
 
-function mapDispatchToProps(dispatch) {
+function mapStateToProps() { return {} }
 
+function mapDispatchToProps(dispatch, { navigation }) {
+  return {
+    addDeck: (title) => dispatch(handleAddingDeck(title)),
+    goHome: () => navigation.navigate('Home')
+  }
 }
 
-export default connect()(NewDeck)
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewDeck)
