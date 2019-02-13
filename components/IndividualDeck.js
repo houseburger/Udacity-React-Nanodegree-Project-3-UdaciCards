@@ -28,7 +28,7 @@ class IndividualDeckList extends Component {
       <View style={styles.container}>
         <Text>{deck.title}</Text>
         <Text>{this.showDeckLength(deck.questions.length)}</Text>
-        <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('NewQuestion', {
+        <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('NewCard', {
           id: deck.title
         })}>
           <Text>Add Card</Text>

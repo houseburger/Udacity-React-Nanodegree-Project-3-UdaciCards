@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import { createAppContainer, createStackNavigator } from 'react-navigation'
 import DeckList from './components/DeckList'
 import IndividualDeck from './components/IndividualDeck'
-import NewQuestion from './components/NewQuestion'
+import NewCard from './components/NewCard'
 import Quiz from './components/Quiz'
 import NewDeck from './components/NewDeck'
 
@@ -42,8 +42,8 @@ const MainNavigator = createStackNavigator({
         title: 'New Deck'
       }
     },
-    NewQuestion: {
-      screen: NewQuestion,
+    NewCard: {
+      screen: NewCard,
       navigationOptions: {
         title: 'New Card'
       }
