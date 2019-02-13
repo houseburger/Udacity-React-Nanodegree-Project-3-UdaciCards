@@ -23,20 +23,18 @@ class IndividualDeckList extends Component {
   }
 
   render() {
-    let { deck } = this.props
+    let { deck, goToView } = this.props
+    let questionsLength = deck.questions.length
+    
     return (
       <View style={styles.container}>
         <Text>{deck.title}</Text>
-        <Text>{this.showDeckLength(deck.questions.length)}</Text>
-        <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('NewCard', {
-          id: deck.title
-        })}>
+        <Text>{this.showDeckLength(questionsLength)}</Text>
+        <TouchableOpacity style={styles.button} onPress={() => goToView('NewCard', deck.title)}>
           <Text>Add Card</Text>
         </TouchableOpacity>
-        <TouchableOpacity disabled={deck.questions.length === 0} style={styles.button} onPress={() => this.props.navigation.navigate('Quiz', {
-          // TODO: already disabled, but add styling for disabled!!!
-          id: deck.title
-        })}>
+        <TouchableOpacity disabled={questionsLength === 0} style={styles.button} onPress={() => goToView('Quiz', deck.title)}>
+        {/* // TODO: already disabled, but add styling for disabled!!! */}
           <Text>Start Quiz</Text>
         </TouchableOpacity>
       </View>
@@ -68,4 +66,12 @@ function mapStateToProps( { decks }, props ) {
   }
 }
 
-export default connect(mapStateToProps)(IndividualDeckList)
+function mapDispatchToProps(dispatch, { navigation }) {
+  return {
+    goToView: (view, id) => navigation.navigate(view, {
+      id,
+    }),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(IndividualDeckList)
