@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, KeyboardAvoidingView } from 'react-native'
+import { View, Text, TextInput, TouchableOpacity,
+  StyleSheet, KeyboardAvoidingView, ScrollView,
+} from 'react-native'
 import { connect } from 'react-redux'
 import { handleAddingDeck } from '../actions'
+import { Header } from 'react-navigation'
 
 class NewDeck extends Component {
 
@@ -19,20 +22,27 @@ class NewDeck extends Component {
 
   render() {
     return (
-      <KeyboardAvoidingView behavior='padding' enabled style={styles.container}>
-        <Text>What should the title of the deck be?</Text>
-        <Text style={styles.dude}>DUDE</Text>
-        <Text style={styles.dude}>DUDE</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={(title) => this.setState({title})}
-          value={this.state.title}
-          placeholder='Title of new deck'
-        />
-        {/* TODO: only enable when there is text! */}
-        <TouchableOpacity style={styles.button} onPress={() => this.handleSubmit()}>
-          <Text>Create Deck</Text>
-        </TouchableOpacity>
+      <KeyboardAvoidingView
+        behavior='padding'
+        enabled
+        style={styles.container}
+        keyboardVerticalOffset={Header.HEIGHT + 50}
+      >
+        <ScrollView>
+          <Text>What should the title of the deck be?</Text>
+          <Text style={styles.dude}>DUDE</Text>
+          <Text style={styles.dude}>DUDE</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={(title) => this.setState({title})}
+            value={this.state.title}
+            placeholder='Title of new deck'
+          />
+          {/* TODO: only enable when there is text! */}
+          <TouchableOpacity style={styles.button} onPress={() => this.handleSubmit()}>
+            <Text>Create Deck</Text>
+          </TouchableOpacity>
+        </ScrollView>
       </KeyboardAvoidingView>
     )
   }
