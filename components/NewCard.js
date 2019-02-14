@@ -37,6 +37,7 @@ class NewCard extends Component {
         style={styles.container}
         resetScrollToCoords={{ x: 0, y: 0 }}
         scrollEnabled={ false }
+        extraHeight={100}
       >
         <Text>Please insert the question and answer for this card</Text>
         <Text style={styles.dude}>DUDE</Text>
