@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, KeyboardAvoidingView } from 'react-native'
 import { handleAddingCard } from '../actions'
 import { connect } from 'react-redux'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 class NewCard extends Component {
 
@@ -32,8 +33,14 @@ class NewCard extends Component {
 
   render() {
     return (
-      <View>
+      <KeyboardAwareScrollView
+        style={styles.container}
+        resetScrollToCoords={{ x: 0, y: 0 }}
+        scrollEnabled={ false }
+      >
         <Text>Please insert the question and answer for this card</Text>
+        <Text style={styles.dude}>DUDE</Text>
+        <Text style={styles.dude}>DUDE</Text>
         <TextInput
           style={styles.input}
           onChangeText={(text) => this.updateState(text, 'question')}
@@ -49,12 +56,19 @@ class NewCard extends Component {
         <TouchableOpacity style={styles.button} onPress={() => this.handleSubmit()}>
           <Text>Create Card</Text>
         </TouchableOpacity>
-      </View>
+      </KeyboardAwareScrollView>
     )
   }
 }
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#f26f28',
+  },
+  dude: {
+    margin: 50,
+    padding: 50,
+  },
   input: {
     // flex: 1,
     backgroundColor: '#b93fb3',
