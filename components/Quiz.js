@@ -63,7 +63,7 @@ class Quiz extends Component {
           <Text>Correct</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={() => this.saveAnswer(false)}>
-          <Text>False</Text>
+          <Text>Incorrect</Text>
         </TouchableOpacity>
       </View>
     )

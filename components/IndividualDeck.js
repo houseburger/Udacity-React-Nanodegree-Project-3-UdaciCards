@@ -25,7 +25,7 @@ class IndividualDeckList extends Component {
   render() {
     let { deck, goToView } = this.props
     let questionsLength = deck.questions.length
-    
+
     return (
       <View style={styles.container}>
         <Text>{deck.title}</Text>
@@ -35,7 +35,7 @@ class IndividualDeckList extends Component {
         </TouchableOpacity>
         <TouchableOpacity disabled={questionsLength === 0} style={styles.button} onPress={() => goToView('Quiz', deck.title)}>
         {/* // TODO: already disabled, but add styling for disabled!!! */}
-          <Text>Start Quiz</Text>
+          <Text>Start a Quiz</Text>
         </TouchableOpacity>
       </View>
     )
