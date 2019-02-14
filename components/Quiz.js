@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
-import QuizOrAnswer from './QuizOrAnswer'
 
 class Quiz extends Component {
 
@@ -33,10 +32,6 @@ class Quiz extends Component {
     let { currentIndex, showAnswer, correctAnswers } = this.state
     let questions = deck.questions
 
-    // for the text to be displayed
-    // let currentQuestion = questions[currentIndex]
-    // let text = showAnswer ? currentQuestion.answer : currentQuestion.question
-
     if (currentIndex === questions.length) {
       return (
         <View>
@@ -52,7 +47,6 @@ class Quiz extends Component {
         <Text>{deck.title}</Text>
         <Text>{`${currentIndex + 1}/${questions.length}`}</Text>
 
-
         <View>
           <Text>
             {showAnswer
@@ -64,28 +58,9 @@ class Quiz extends Component {
             ...prevState,
             showAnswer: !prevState.showAnswer
           }))}>
-          <Text>{showAnswer ? 'show question' : 'show answer'}</Text>
-        </TouchableOpacity>
+            <Text>{showAnswer ? 'show question' : 'show answer'}</Text>
+          </TouchableOpacity>
         </View>
-
-
-
-        {/* {showAnswer
-          ? (
-            <QuizOrAnswer />
-          )
-          : (
-            <View>
-              <Text>{questions[currentIndex].question}</Text>
-              <TouchableOpacity onPress={() => this.setState((prevState) => ({
-                ...prevState,
-                showAnswer: !prevState.showAnswer
-              }))}>
-              <Text>show answer</Text>
-            </TouchableOpacity>
-            </View>
-          )
-        } */}
 
         <TouchableOpacity style={styles.button} onPress={() => this.saveAnswer(true)}>
           <Text>Correct</Text>
