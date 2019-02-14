@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
+import Results from './Results'
 
 class Quiz extends Component {
 
@@ -34,11 +35,7 @@ class Quiz extends Component {
 
     if (currentIndex === questions.length) {
       return (
-        <View>
-          <Text>finished quiz, SHOW RESULTS</Text>
-          <Text>Correct Answers: {correctAnswers} out of {questions.length}</Text>
-          <Text>{(100 * correctAnswers / questions.length).toFixed()}%</Text>
-        </View>
+        <Results correct={correctAnswers} total={questions.length} />
       )
     }
 
