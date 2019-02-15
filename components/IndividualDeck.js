@@ -10,6 +10,7 @@ class IndividualDeckList extends Component {
       headerLeft:(
         <TouchableOpacity
           onPress={() => navigation.navigate('Home')}
+          style={styles.back}
         >
           {
             Platform.OS === 'ios'
@@ -83,6 +84,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#7bc043',
     padding: 10,
     margin: 20
+  },
+  back: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
   }
 })
 
