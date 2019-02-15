@@ -20,6 +20,7 @@ class NewDeck extends Component {
   }
 
   render() {
+    let { title } = this.state
     return (
       <KeyboardAvoidingView
         behavior='padding'
@@ -37,8 +38,8 @@ class NewDeck extends Component {
             value={this.state.title}
             placeholder='Title of new deck'
           />
-          {/* TODO: only enable when there is text! */}
-          <TouchableOpacity style={styles.button} onPress={() => this.handleSubmit()}>
+          {/* TODO: styling for disabled button! */}
+          <TouchableOpacity style={styles.button} onPress={() => this.handleSubmit()} disabled={title.length <= 1}>
             <Text>Create Deck</Text>
           </TouchableOpacity>
         </ScrollView>
