@@ -20,12 +20,6 @@ const Results = (props) => {
   )
 }
 
-// Results.propTypes = {
-//   correct: PropTypes.number.isRequired,
-//   total: PropTypes.number.isRequired,
-//   id: PropTypes.string.isRequired,
-// }
-
 function mapStateToProps(state, { navigation }) {
   const total = navigation.getParam('total', 'No total')
   const correct = navigation.getParam('correct', 'No correct')

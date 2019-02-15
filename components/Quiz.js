@@ -23,7 +23,7 @@ class Quiz extends Component {
   goToResults = (isCorrect, total) => {
     const { correctAnswers } = this.state
     const { navigation, id } = this.props
-    
+
     // no need to update state.correctAnswers, as will go to Results anyways
     const correct = isCorrect ? (correctAnswers + 1) : correctAnswers
     navigation.navigate('Results', {
@@ -36,6 +36,7 @@ class Quiz extends Component {
     this.reset()
   }
 
+
   saveAnswer = (isCorrect) => {
     const { currentIndex } = this.state
     const { deck } = this.props
@@ -43,21 +44,10 @@ class Quiz extends Component {
 
     // when quiz is over, show quiz results, skip increasing currentIndex
     if (currentIndex + 1 === total) {
-
       this.goToResults(isCorrect, total)
-
-      // // no need to update state.correctAnswers, as will go to Results anyways
-      // const correct = isCorrect ? (correctAnswers + 1) : correctAnswers
-      // navigation.navigate('Results', {
-      //   id,
-      //   correct,
-      //   total,
-      // })
-      //
-      // // reset quiz for when going back to quiz from results
-      // this.reset()
     }
     else{ // quiz is still running!
+      
       // increase correctAnswers if correct
       if (isCorrect) {
         this.setState((prevState) => ({
