@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, Platform, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, Platform, TouchableOpacity, StyleSheet, FlatList } from 'react-native'
 import { connect } from 'react-redux'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 
@@ -13,7 +13,7 @@ class DeckList extends Component {
     return {
       headerRight: (
         <TouchableOpacity
-          onPress={() => navigation.navigate('NewDeck')}          
+          onPress={() => navigation.navigate('NewDeck')}
         >
           {
             // TODO: add Icon to this button!
@@ -53,23 +53,31 @@ class DeckList extends Component {
     this.props.goToDeck(id)
   }
 
+  _renderItem = ({ item }) => (
+    <TouchableOpacity onPress={() => this.buttonPressed(item.title)} style={styles.deck}>
+      <Text>{item.title}</Text>
+      <Text>{this.showDeckLength(item.questions.length)}</Text>
+    </TouchableOpacity>
+  )
+
+  _keyExtractor = (item, index) => item.title
 
   render() {
     let { loading, decks } = this.props
+    console.log('WTF?: ', Object.values(decks))
 
     return (
       <View style={styles.container}>
         {
           loading === true
             ? <Text>No Decks yet! Please create a deck!</Text>
-            : <View style={styles.dude}>
-              {Object.values(decks).map(deck => (
-                <TouchableOpacity onPress={() => this.buttonPressed(deck.title)} key={deck.title} style={styles.deck}>
-                  <Text>{deck.title}</Text>
-                  <Text>{this.showDeckLength(deck.questions.length)}</Text>
-                </TouchableOpacity>
-              ))}
-            </View>
+            : (
+              <FlatList style={styles.dude}
+                data={Object.values(decks)}
+                renderItem={this._renderItem}
+                keyExtractor={this._keyExtractor}
+              />
+            )
         }
       </View>
     )
@@ -81,8 +89,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f26f28',
-    alignItems: 'center',
-    justifyContent: 'center',
     color: '#fff'
   },
   deck: {
@@ -93,7 +99,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   dude: {
-    backgroundColor: '#b93fb3'
+    backgroundColor: '#b93fb3',
+    flex: 1,
   }
 })
 
