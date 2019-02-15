@@ -1,11 +1,38 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, Platform, StyleSheet, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { getDeck } from '../actions'
+import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 
 class IndividualDeckList extends Component {
-
-  // TODO: going back will always go back Home, not possibly to NewDeck!
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerLeft:(
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Home')}
+        >
+          {
+            Platform.OS === 'ios'
+              ? (
+                <Ionicons
+                  name={'ios-arrow-back'}
+                  size={30}
+                  color='blue'
+                />
+              )
+              : (
+                <MaterialIcons
+                  name={'arrow-back'}
+                  size={30}
+                  color='blue'
+                />
+              )
+          }
+          <Text>Back</Text>
+        </TouchableOpacity>
+      )
+    }
+  }
 
   showDeckLength = (deckLength) => {
     switch(true) {
