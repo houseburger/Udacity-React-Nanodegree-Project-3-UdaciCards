@@ -11,16 +11,61 @@ class Quiz extends Component {
     correctAnswers: 0
   }
 
-  saveAnswer = (isCorrect) => {
-    if (isCorrect) {
-      this.setState((prevState) => ({
-        ...prevState,
-        currentIndex: prevState.currentIndex + 1,
-        correctAnswers: prevState.correctAnswers + 1
-      }))
+  reset = () => {
+    // reset state, for when restarting quiz or going back to quiz
+    this.setState(() => ({
+      currentIndex: 0,
+      showAnswer: false,
+      correctAnswers: 0,
+    }))
+  }
 
+  goToResults = (isCorrect, total) => {
+    const { correctAnswers } = this.state
+    const { navigation, id } = this.props
+    
+    // no need to update state.correctAnswers, as will go to Results anyways
+    const correct = isCorrect ? (correctAnswers + 1) : correctAnswers
+    navigation.navigate('Results', {
+      id,
+      correct,
+      total,
+    })
+
+    // reset quiz for when going back to quiz from results
+    this.reset()
+  }
+
+  saveAnswer = (isCorrect) => {
+    const { currentIndex } = this.state
+    const { deck } = this.props
+    const total = deck.questions.length
+
+    // when quiz is over, show quiz results, skip increasing currentIndex
+    if (currentIndex + 1 === total) {
+
+      this.goToResults(isCorrect, total)
+
+      // // no need to update state.correctAnswers, as will go to Results anyways
+      // const correct = isCorrect ? (correctAnswers + 1) : correctAnswers
+      // navigation.navigate('Results', {
+      //   id,
+      //   correct,
+      //   total,
+      // })
+      //
+      // // reset quiz for when going back to quiz from results
+      // this.reset()
     }
-    else { // = incorrect
+    else{ // quiz is still running!
+      // increase correctAnswers if correct
+      if (isCorrect) {
+        this.setState((prevState) => ({
+          ...prevState,
+          correctAnswers: prevState.correctAnswers + 1
+        }))
+      }
+      // increase currentIndex to show next card
       this.setState((prevState) => ({
         ...prevState,
         currentIndex: prevState.currentIndex + 1,
@@ -29,15 +74,9 @@ class Quiz extends Component {
   }
 
   render() {
-    let { deck, id } = this.props
-    let { currentIndex, showAnswer, correctAnswers } = this.state
+    const { deck, id } = this.props
+    let { currentIndex, showAnswer } = this.state
     let questions = deck.questions
-
-    if (currentIndex === questions.length) {
-      return (
-        <Results correct={correctAnswers} total={questions.length} />
-      )
-    }
 
     return (
       <View style={styles.container}>

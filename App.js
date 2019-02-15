@@ -57,9 +57,9 @@ const MainNavigator = createStackNavigator({
     },
     Results: {
       screen: Results,
-      // navigationOptions: {
-      //   title: 'Quiz Results'
-      // }
+      navigationOptions: {
+        title: 'Quiz Results'
+      }
     }
   // },
   // {
