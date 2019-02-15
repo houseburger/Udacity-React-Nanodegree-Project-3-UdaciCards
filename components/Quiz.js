@@ -22,18 +22,14 @@ class Quiz extends Component {
 
   goToResults = (isCorrect, total) => {
     const { correctAnswers } = this.state
-    const { navigation, id } = this.props
+    const { goToResults } = this.props
 
     // no need to update state.correctAnswers, as will go to Results anyways
     const correct = isCorrect ? (correctAnswers + 1) : correctAnswers
-    navigation.navigate('Results', {
-      id,
-      correct,
-      total,
-    })
 
-    // reset quiz for when going back to quiz from results
-    this.reset()
+    goToResults(correct, total) // go to results view
+
+    this.reset() // reset quiz for when going back to quiz from results
   }
 
 
@@ -47,24 +43,17 @@ class Quiz extends Component {
       this.goToResults(isCorrect, total)
     }
     else{ // quiz is still running!
-      
-      // increase correctAnswers if correct
-      if (isCorrect) {
-        this.setState((prevState) => ({
-          ...prevState,
-          correctAnswers: prevState.correctAnswers + 1
-        }))
-      }
-      // increase currentIndex to show next card
       this.setState((prevState) => ({
         ...prevState,
-        currentIndex: prevState.currentIndex + 1,
+        correctAnswers: isCorrect ? prevState.correctAnswers + 1 : prevState.correctAnswers, // increase correctAnswers if correct
+        currentIndex: prevState.currentIndex + 1, // increase currentIndex to show next card
       }))
     }
   }
 
   render() {
     const { deck, id } = this.props
+    console.log(`Deck + ID: ${deck}, ${id}`)
     let { currentIndex, showAnswer } = this.state
     let questions = deck.questions
 
@@ -113,8 +102,8 @@ const styles = StyleSheet.create({
   }
 })
 
-function mapStateToProps({ decks }, props) {
-  const id = props.navigation.getParam('id', 'No ID')
+function mapStateToProps({ decks }, { navigation }) {
+  const id = navigation.getParam('id', 'No ID')
   let deck = Object.values(decks).filter(deck => deck.title === id)[0]
   return {
     deck,
@@ -122,4 +111,15 @@ function mapStateToProps({ decks }, props) {
   }
 }
 
-export default connect(mapStateToProps)(Quiz)
+function mapDispatchToProps(dispatch, { navigation }) {
+  const id = navigation.getParam('id', 'No ID')
+  return {
+    goToResults: (correct, total) => navigation.navigate('Results', {
+      id,
+      correct,
+      total,
+    }),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Quiz)
