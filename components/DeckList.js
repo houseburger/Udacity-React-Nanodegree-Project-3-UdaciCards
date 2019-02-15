@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity, Button, StyleSheet } from 'react-native'
+import { View, Text, Platform, TouchableOpacity, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
+import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 
 // Data
 import { handleInitialData } from '../actions'
@@ -11,12 +12,24 @@ class DeckList extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
       headerRight: (
-        <Button
-          onPress={() => navigation.navigate('NewDeck')}
-          title="Add Deck"
-          color='#fa8072'
-        />
-        // TODO: add Icon to this button!
+        <TouchableOpacity
+          onPress={() => navigation.navigate('NewDeck')}          
+        >
+          {
+            // TODO: add Icon to this button!
+            Platform.OS === 'ios'
+              ? <Ionicons
+                  name={'ios-add'}
+                  color='#fa8072'
+                  size={40}
+                />
+              : <MaterialIcons
+                  name={'md-add'}
+                  color='#fa8072'
+                  size={40}
+                />
+          }
+        </TouchableOpacity>
       )
     }
   }
