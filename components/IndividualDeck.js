@@ -5,6 +5,8 @@ import { getDeck } from '../actions'
 
 class IndividualDeckList extends Component {
 
+  // TODO: going back will always go back Home, not possibly to NewDeck!
+
   showDeckLength = (deckLength) => {
     switch(true) {
       case deckLength === 1 :
@@ -59,6 +61,7 @@ const styles = StyleSheet.create({
 
 // could also use AsyncStorage functions, but this is better!
 function mapStateToProps( { decks }, props ) {
+  console.log('decks: ', decks)
   const id = props.navigation.getParam('id', 'No ID')
   const deck = Object.values(decks).filter(deck => deck.title === id)
   return {

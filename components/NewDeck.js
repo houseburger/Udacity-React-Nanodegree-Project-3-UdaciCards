@@ -13,11 +13,10 @@ class NewDeck extends Component {
   }
 
   handleSubmit = () => {
-    let { goHome, addDeck } = this.props
-    addDeck(this.state.title)
-    //TODO: make sure it only navigates to Home AFTER saving!!!!
-    // TODO: check whether saves in AsyncStorage
-    goHome()
+    let { addDeck, goToDeck } = this.props
+    const { title } = this.state
+    addDeck(title)
+      .then(() => goToDeck(title))
   }
 
   render() {
@@ -76,7 +75,9 @@ function mapStateToProps() { return {} }
 function mapDispatchToProps(dispatch, { navigation }) {
   return {
     addDeck: (title) => dispatch(handleAddingDeck(title)),
-    goHome: () => navigation.navigate('Home')
+    goToDeck: (title) => navigation.navigate('IndividualDeck', {
+      id: title
+    })
   }
 }
 
