@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import Results from './Results'
+import {
+  setLocalNotification,
+  clearNotification,
+} from '../utils/helpers'
 
 class Quiz extends Component {
 
@@ -30,6 +34,9 @@ class Quiz extends Component {
     goToResults(correct, total) // go to results view
 
     this.reset() // reset quiz for when going back to quiz from results
+
+    clearNotification() // remove existing notification and set one for tomorrow!
+      .then(setLocalNotification)
   }
 
 

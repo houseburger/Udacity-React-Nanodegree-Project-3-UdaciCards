@@ -7,6 +7,7 @@ import NewCard from './components/NewCard'
 import Quiz from './components/Quiz'
 import NewDeck from './components/NewDeck'
 import Results from './components/Results'
+import { setLocalNotification } from './utils/helpers'
 
 // Redux
 import { createStore } from 'redux'
@@ -71,6 +72,10 @@ const AppContainer = createAppContainer(MainNavigator)
 
 
 export default class App extends React.Component {
+
+  componentDidMount = () => {
+    setLocalNotification()
+  }
 
   render() {
     return (
