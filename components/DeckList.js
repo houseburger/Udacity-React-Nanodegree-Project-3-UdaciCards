@@ -1,7 +1,13 @@
 import React, { Component } from 'react'
-import { View, Text, Platform, TouchableOpacity, StyleSheet, FlatList } from 'react-native'
+import { View, Text, Platform, TouchableOpacity, FlatList } from 'react-native'
 import { connect } from 'react-redux'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
+import {
+  Container,
+  CenterView,
+  BigText,
+  DeckBox,
+} from './styled'
 
 // Data
 import { handleInitialData } from '../actions'
@@ -54,10 +60,10 @@ class DeckList extends Component {
   }
 
   _renderItem = ({ item }) => (
-    <TouchableOpacity onPress={() => this.buttonPressed(item.title)} style={styles.deck}>
+    <DeckBox onPress={() => this.buttonPressed(item.title)}>
       <Text>{item.title}</Text>
       <Text>{this.showDeckLength(item.questions.length)}</Text>
-    </TouchableOpacity>
+    </DeckBox>
   )
 
   _keyExtractor = (item, index) => item.title
@@ -67,42 +73,26 @@ class DeckList extends Component {
     console.log('WTF?: ', Object.values(decks))
 
     return (
-      <View style={styles.container}>
+      <Container>
         {
           loading === true
-            ? <Text>No Decks yet! Please create a deck!</Text>
+            ? (
+              <CenterView>
+                <BigText>No Decks yet! Please create a deck!</BigText>
+              </CenterView>
+            )
             : (
-              <FlatList style={styles.dude}
+              <FlatList
                 data={Object.values(decks)}
                 renderItem={this._renderItem}
                 keyExtractor={this._keyExtractor}
               />
             )
         }
-      </View>
+      </Container>
     )
   }
 }
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f26f28',
-    color: '#fff'
-  },
-  deck: {
-    backgroundColor: '#b71845',
-    margin: 20,
-    padding: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  dude: {
-    backgroundColor: '#b93fb3',
-    flex: 1,
-  }
-})
 
 function mapStateToProps({ decks }) {
   return {
