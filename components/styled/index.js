@@ -41,6 +41,20 @@ export const QuizTop = styled.View`
 export const QuestionAnswer = styled.View`
   background-color: brown;
   align-items: center;
+  flex: 1;
+  justify-content: center;
+`
+
+export const QAText = styled.Text`
+  font-size: 34px;
+
+`
+
+export const SwitchText = styled.Text`
+  font-size: 24px;
+  margin-top: 14px;
+  ${'' /* opacity: 0.8; */}
+  color: darkgrey;
 `
 
 export const QuizButtons = styled.View`

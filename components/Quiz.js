@@ -8,7 +8,7 @@ import {
 } from '../utils/helpers'
 import {
   Container, CenterView, Title,
-  QuizNumber, Button, ButtonText,
+  QuizNumber, Button, ButtonText, SwitchText, QAText,
   QuizGrid, QuizTop, QuestionAnswer, QuizButtons,
 } from './styled'
 
@@ -65,7 +65,6 @@ class Quiz extends Component {
 
   render() {
     const { deck, id } = this.props
-    console.log(`Deck + ID: ${deck}, ${id}`)
     let { currentIndex, showAnswer } = this.state
     let questions = deck.questions
 
@@ -76,17 +75,17 @@ class Quiz extends Component {
           <QuizNumber>{`${currentIndex + 1}/${questions.length}`}</QuizNumber>
         </QuizTop>
         <QuestionAnswer>
-          <Text>
+          <QAText>
             {showAnswer
-              ? questions[currentIndex].question
-              : questions[currentIndex].answer
+              ? questions[currentIndex].answer
+              : questions[currentIndex].question
             }
-          </Text>
+          </QAText>
           <TouchableOpacity onPress={() => this.setState((prevState) => ({
             ...prevState,
             showAnswer: !prevState.showAnswer
           }))}>
-            <Text>{showAnswer ? 'show question' : 'show answer'}</Text>
+            <SwitchText>{showAnswer ? 'show question' : 'show answer'}</SwitchText>
           </TouchableOpacity>
         </QuestionAnswer>
         <QuizButtons>

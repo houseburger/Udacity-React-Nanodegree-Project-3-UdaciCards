@@ -15,12 +15,14 @@ const Results = (props) => {
       <QuizNumber>Correct Answers:</QuizNumber>
       <QuizNumber>{correct} out of {total}</QuizNumber>
       <BigText>{(100 * correct / total).toFixed()}%</BigText>
-      <Button onPress={() => goToView('Quiz')}>
-        <ButtonText>Restart Quiz</ButtonText>
-      </Button>
-      <Button onPress={() => goToView('IndividualDeck')}>
-        <ButtonText>Back to Deck</ButtonText>
-      </Button>
+      <View>
+        <Button onPress={() => goToView('Quiz')}>
+          <ButtonText>Restart Quiz</ButtonText>
+        </Button>
+        <Button onPress={() => goToView('IndividualDeck')}>
+          <ButtonText>Back to Deck</ButtonText>
+        </Button>
+      </View>
     </Container>
   )
 }
