@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import Results from './Results'
 import {
   setLocalNotification,
   clearNotification,
 } from '../utils/helpers'
+import {
+  Container, Dude, CenterView, Title,
+  QuizNumber, Button, ButtonText,
+} from './styled'
 
 class Quiz extends Component {
 
@@ -65,49 +69,38 @@ class Quiz extends Component {
     let questions = deck.questions
 
     return (
-      <View style={styles.container}>
-        <Text>{deck.title}</Text>
-        <Text>{`${currentIndex + 1}/${questions.length}`}</Text>
+      <Container>
+        <Dude>
+          <Title>{deck.title}</Title>
+          <QuizNumber>{`${currentIndex + 1}/${questions.length}`}</QuizNumber>
+        </Dude>
+        <CenterView>
+          <View>
+            <Text>
+              {showAnswer
+                ? questions[currentIndex].question
+                : questions[currentIndex].answer
+              }
+            </Text>
+            <TouchableOpacity onPress={() => this.setState((prevState) => ({
+              ...prevState,
+              showAnswer: !prevState.showAnswer
+            }))}>
+              <Text>{showAnswer ? 'show question' : 'show answer'}</Text>
+            </TouchableOpacity>
+          </View>
 
-        <View>
-          <Text>
-            {showAnswer
-              ? questions[currentIndex].question
-              : questions[currentIndex].answer
-            }
-          </Text>
-          <TouchableOpacity onPress={() => this.setState((prevState) => ({
-            ...prevState,
-            showAnswer: !prevState.showAnswer
-          }))}>
-            <Text>{showAnswer ? 'show question' : 'show answer'}</Text>
-          </TouchableOpacity>
-        </View>
-
-        <TouchableOpacity style={styles.button} onPress={() => this.saveAnswer(true)}>
-          <Text>Correct</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => this.saveAnswer(false)}>
-          <Text>Incorrect</Text>
-        </TouchableOpacity>
-      </View>
+          <Button onPress={() => this.saveAnswer(true)} >
+            <ButtonText>Correct</ButtonText>
+          </Button>
+          <Button onPress={() => this.saveAnswer(false)} falseColor="#f00">
+            <ButtonText>Incorrect</ButtonText>
+          </Button>
+        </CenterView>
+      </Container>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#7c53c3',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  button: {
-    backgroundColor: '#7bc043',
-    padding: 10,
-    margin: 20
-  }
-})
 
 function mapStateToProps({ decks }, { navigation }) {
   const id = navigation.getParam('id', 'No ID')

@@ -2,11 +2,23 @@ import styled from 'styled-components/native'
 
 export const Button = styled.TouchableOpacity`
   background-color: orange;
+  background-color: ${props => props.falseColor || "green"};
   min-width: 200px;
   align-items: center;
   border-radius: 10px;
   padding: 20px;
   margin: 20px;
+`
+
+export const Dude = styled.View`
+  padding: 10px;
+  background-color: orange;
+`
+
+export const QuizNumber = styled.Text`
+  text-align: center;
+  font-size: 28px;
+  margin: 10px;
 `
 
 export const DisabledButton = styled(Button)`
@@ -68,7 +80,7 @@ export const Container = styled.View`
 
 export const CenterView = styled.View`
   flex: 1;
-  background-color: red;
+  background-color: purple;
   align-items: center;
   justify-content: center;
   font-size: 80px;
