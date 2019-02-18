@@ -57,11 +57,17 @@ export const SwitchText = styled.Text`
   color: darkgrey;
 `
 
-export const QuizButtons = styled.View`
+export const BottomButtons = styled.View`
   padding-bottom: 30px;
   background-color: lightblue;
 `
 /////////////
+
+export const Percentage = styled.Text`
+  font-size: 50px;
+  color: green;
+  text-align: center;
+`
 
 
 export const HeaderButton = styled.TouchableOpacity`

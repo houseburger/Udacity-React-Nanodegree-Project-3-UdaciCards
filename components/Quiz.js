@@ -9,7 +9,7 @@ import {
 import {
   Container, CenterView, Title,
   QuizNumber, Button, ButtonText, SwitchText, QAText,
-  QuizGrid, QuizTop, QuestionAnswer, QuizButtons,
+  QuizGrid, QuizTop, QuestionAnswer, BottomButtons,
 } from './styled'
 
 class Quiz extends Component {
@@ -88,14 +88,14 @@ class Quiz extends Component {
             <SwitchText>{showAnswer ? 'show question' : 'show answer'}</SwitchText>
           </TouchableOpacity>
         </QuestionAnswer>
-        <QuizButtons>
+        <BottomButtons>
           <Button onPress={() => this.saveAnswer(true)} >
             <ButtonText>Correct</ButtonText>
           </Button>
           <Button onPress={() => this.saveAnswer(false)} isFalse>
             <ButtonText>Incorrect</ButtonText>
           </Button>
-        </QuizButtons>
+        </BottomButtons>
       </QuizGrid>
     )
   }

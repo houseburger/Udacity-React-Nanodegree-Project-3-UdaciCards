@@ -3,27 +3,27 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import {
-  Container, Title, QuizNumber,
-  BigText, Button, ButtonText,
+  QuizGrid, Title, QuizNumber,
+  Percentage, Button, ButtonText, BottomButtons,
 } from './styled'
 
 const Results = (props) => {
   let { correct, total, goToView } = props
   return (
-    <Container>
+    <QuizGrid>
       <Title>You finished the quiz!</Title>
       <QuizNumber>Correct Answers:</QuizNumber>
       <QuizNumber>{correct} out of {total}</QuizNumber>
-      <BigText>{(100 * correct / total).toFixed()}%</BigText>
-      <View>
+      <Percentage>{(100 * correct / total).toFixed()}%</Percentage>
+      <BottomButtons>
         <Button onPress={() => goToView('Quiz')}>
           <ButtonText>Restart Quiz</ButtonText>
         </Button>
         <Button onPress={() => goToView('IndividualDeck')}>
           <ButtonText>Back to Deck</ButtonText>
         </Button>
-      </View>
-    </Container>
+      </BottomButtons>
+    </QuizGrid>
   )
 }
 
