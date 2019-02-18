@@ -10,7 +10,7 @@ export const Button = styled.TouchableOpacity`
 `
 
 export const DisabledButton = styled(Button)`
-  opacity: 0.8;
+  opacity: 0.5;
   background-color: darkgreen;
 `
 
@@ -23,9 +23,23 @@ export const HeaderButton = styled.TouchableOpacity`
   margin-right: 14px;
 `
 
+export const InputField = styled.TextInput`
+  padding: 10px;
+  margin: 20px;
+  background-color: red;
+  font-size: 30px;
+  border-radius: 10px;
+  min-width: 200px;
+  border: 0;
+  background: transparent;
+  border-bottom-width: 1px;
+  border-bottom-color: black;
+`
+
 export const Title = styled.Text`
   font-size: 34px;
   margin: 10px;
+  text-align: center;
 `
 
 export const CardDescription = styled.Text`

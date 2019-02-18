@@ -5,6 +5,10 @@ import { View, Text, TextInput, TouchableOpacity,
 import { connect } from 'react-redux'
 import { handleAddingDeck } from '../actions'
 import { Header } from 'react-navigation'
+import {
+  Title, InputField,
+  Button, DisabledButton, ButtonText,
+} from './styled'
 
 class NewDeck extends Component {
 
@@ -29,19 +33,25 @@ class NewDeck extends Component {
         keyboardVerticalOffset={Header.HEIGHT + 50}
       >
         <ScrollView>
-          <Text>What should the title of the deck be?</Text>
-          <Text style={styles.dude}>DUDE</Text>
-          <Text style={styles.dude}>DUDE</Text>
-          <TextInput
-            style={styles.input}
+          <Title>What should the title of the deck be?</Title>
+          <InputField            
             onChangeText={(title) => this.setState({title})}
             value={this.state.title}
             placeholder='Title of new deck'
           />
-          {/* TODO: styling for disabled button! */}
-          <TouchableOpacity style={styles.button} onPress={() => this.handleSubmit()} disabled={title.length <= 1}>
-            <Text>Create Deck</Text>
-          </TouchableOpacity>
+          {
+            title.length <= 1
+              ? (
+                <DisabledButton disabled={true}>
+                  <ButtonText>Create Deck</ButtonText>
+                </DisabledButton>
+              )
+              : (
+                <Button onPress={() => this.handleSubmit()}>
+                  <ButtonText>Create Deck</ButtonText>
+                </Button>
+              )
+          }
         </ScrollView>
       </KeyboardAvoidingView>
     )
@@ -53,21 +63,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f26f28',
   },
-  input: {
-    // flex: 1,
-    backgroundColor: '#b93fb3',
-    padding: 10,
-    margin: 20,
-  },
   button: {
     backgroundColor: '#7fffd4',
     padding: 10,
     margin: 20,
     alignItems: 'center',
-  },
-  dude: {
-    margin: 50,
-    padding: 50,
   },
 })
 
