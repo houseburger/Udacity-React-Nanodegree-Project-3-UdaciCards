@@ -7,8 +7,9 @@ import {
   clearNotification,
 } from '../utils/helpers'
 import {
-  Container, Dude, CenterView, Title,
+  Container, CenterView, Title,
   QuizNumber, Button, ButtonText,
+  QuizGrid, QuizTop, QuestionAnswer, QuizButtons,
 } from './styled'
 
 class Quiz extends Component {
@@ -69,35 +70,34 @@ class Quiz extends Component {
     let questions = deck.questions
 
     return (
-      <Container>
-        <Dude>
+      <QuizGrid>
+        <QuizTop>
           <Title>{deck.title}</Title>
           <QuizNumber>{`${currentIndex + 1}/${questions.length}`}</QuizNumber>
-        </Dude>
-        <CenterView>
-          <View>
-            <Text>
-              {showAnswer
-                ? questions[currentIndex].question
-                : questions[currentIndex].answer
-              }
-            </Text>
-            <TouchableOpacity onPress={() => this.setState((prevState) => ({
-              ...prevState,
-              showAnswer: !prevState.showAnswer
-            }))}>
-              <Text>{showAnswer ? 'show question' : 'show answer'}</Text>
-            </TouchableOpacity>
-          </View>
-
+        </QuizTop>
+        <QuestionAnswer>
+          <Text>
+            {showAnswer
+              ? questions[currentIndex].question
+              : questions[currentIndex].answer
+            }
+          </Text>
+          <TouchableOpacity onPress={() => this.setState((prevState) => ({
+            ...prevState,
+            showAnswer: !prevState.showAnswer
+          }))}>
+            <Text>{showAnswer ? 'show question' : 'show answer'}</Text>
+          </TouchableOpacity>
+        </QuestionAnswer>
+        <QuizButtons>
           <Button onPress={() => this.saveAnswer(true)} >
             <ButtonText>Correct</ButtonText>
           </Button>
           <Button onPress={() => this.saveAnswer(false)} isFalse>
             <ButtonText>Incorrect</ButtonText>
           </Button>
-        </CenterView>
-      </Container>
+        </QuizButtons>
+      </QuizGrid>
     )
   }
 }

@@ -10,26 +10,45 @@ export const Button = styled.TouchableOpacity`
   margin: 20px;
 `
 
-export const Dude = styled.View`
+export const DisabledButton = styled(Button)`
+opacity: 0.5;
+background-color: darkgreen;
+`
+
+export const ButtonText = styled.Text`
+color: white;
+font-size: 24px;
+`
+
+
+// Quiz Component
+export const QuizGrid = styled.View`
+flex: 1;
+justify-content: space-between;
+`
+
+export const QuizNumber = styled.Text`
+text-align: center;
+font-size: 28px;
+margin: 10px;
+`
+
+export const QuizTop = styled.View`
   padding: 10px;
   background-color: orange;
 `
 
-export const QuizNumber = styled.Text`
-  text-align: center;
-  font-size: 28px;
-  margin: 10px;
+export const QuestionAnswer = styled.View`
+  background-color: brown;
+  align-items: center;
 `
 
-export const DisabledButton = styled(Button)`
-  opacity: 0.5;
-  background-color: darkgreen;
+export const QuizButtons = styled.View`
+  padding-bottom: 30px;
+  background-color: lightblue;
 `
+/////////////
 
-export const ButtonText = styled.Text`
-  color: white;
-  font-size: 24px;
-`
 
 export const HeaderButton = styled.TouchableOpacity`
   margin-right: 12px;
