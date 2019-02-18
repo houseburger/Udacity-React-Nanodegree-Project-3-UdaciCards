@@ -6,7 +6,7 @@ export const Button = styled.TouchableOpacity`
   align-items: center;
   border-radius: 10px;
   padding: 20px;
-  margin: 10px;
+  margin: 20px;
 `
 
 export const DisabledButton = styled(Button)`
@@ -20,7 +20,20 @@ export const ButtonText = styled.Text`
 `
 
 export const HeaderButton = styled.TouchableOpacity`
-  margin-right: 14px;
+  margin-right: 12px;
+`
+
+export const BackButton = styled.TouchableOpacity`
+  margin-left: 10px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`
+
+export const BackText = styled.Text`
+  margin-left: 6px;
+  color: #107BF3;
+  font-size: 18px;
 `
 
 export const InputField = styled.TextInput`

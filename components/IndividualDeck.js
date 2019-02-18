@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { View, Text, Platform, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, Platform, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { getDeck } from '../actions'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 import {
   CenterView,
-  Button, DisabledButton, ButtonText,
+  Button, DisabledButton, ButtonText, BackButton, BackText,
   Title, CardDescription,
 } from './styled'
 
@@ -13,29 +13,30 @@ class IndividualDeckList extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
       headerLeft:(
-        <TouchableOpacity
+        <BackButton
           onPress={() => navigation.navigate('Home')}
-          style={styles.back}
         >
           {
             Platform.OS === 'ios'
               ? (
                 <Ionicons
                   name={'ios-arrow-back'}
-                  size={30}
-                  color='blue'
+                  size={34}
+                  color='#107BF3'
+                  style={{paddingTop: 4}} // without padding the icon is not centered for some reason
                 />
               )
               : (
                 <MaterialIcons
                   name={'arrow-back'}
                   size={30}
-                  color='blue'
+                  color='#107BF3'
+                  style={{paddingTop: 4}} // without padding the icon is not centered for some reason
                 />
               )
           }
-          <Text>Back</Text>
-        </TouchableOpacity>
+          <BackText>Back</BackText>
+        </BackButton>
       )
     }
   }
@@ -86,14 +87,6 @@ class IndividualDeckList extends Component {
   }
 }
 
-
-const styles = StyleSheet.create({
-  back: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-  }
-})
 
 // could also use AsyncStorage functions, but this is better!
 function mapStateToProps( { decks }, props ) {

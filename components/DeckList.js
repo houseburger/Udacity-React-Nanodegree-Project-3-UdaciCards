@@ -23,7 +23,6 @@ class DeckList extends Component {
           onPress={() => navigation.navigate('NewDeck')}
         >
           {
-            // TODO: add Icon to this button!
             Platform.OS === 'ios'
               ? <Ionicons
                   name={'ios-add'}

@@ -33,9 +33,6 @@ const MainNavigator = createStackNavigator({
       screen: IndividualDeck,
       navigationOptions: {
         title: 'Deck',
-        headerStyle: {
-          backgroundColor: '#00ff00'
-        }
       }
     },
     NewDeck: {
