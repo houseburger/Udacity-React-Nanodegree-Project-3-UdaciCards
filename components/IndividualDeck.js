@@ -5,10 +5,8 @@ import { getDeck } from '../actions'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 import {
   CenterView,
-  Button, DisabledButton,
-  ButtonText,
-  Title,
-  CardDescription,
+  Button, DisabledButton, ButtonText,
+  Title, CardDescription,
 } from './styled'
 
 class IndividualDeckList extends Component {

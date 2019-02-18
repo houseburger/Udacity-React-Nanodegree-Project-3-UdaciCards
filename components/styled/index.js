@@ -19,6 +19,10 @@ export const ButtonText = styled.Text`
   font-size: 24px;
 `
 
+export const HeaderButton = styled.TouchableOpacity`
+  margin-right: 14px;
+`
+
 export const Title = styled.Text`
   font-size: 34px;
   margin: 10px;

@@ -5,9 +5,9 @@ import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 import {
   Container,
   CenterView,
+  HeaderButton,
   BigText,
-  DeckBox,
-  Title, CardDescription,
+  DeckBox, Title, CardDescription,
 } from './styled'
 
 // Data
@@ -19,7 +19,7 @@ class DeckList extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
       headerRight: (
-        <TouchableOpacity
+        <HeaderButton
           onPress={() => navigation.navigate('NewDeck')}
         >
           {
@@ -36,7 +36,7 @@ class DeckList extends Component {
                   size={40}
                 />
           }
-        </TouchableOpacity>
+        </HeaderButton>
       )
     }
   }
