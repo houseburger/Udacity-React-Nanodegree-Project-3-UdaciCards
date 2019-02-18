@@ -2,7 +2,7 @@ import styled from 'styled-components/native'
 
 export const Button = styled.TouchableOpacity`
   background-color: orange;
-  background-color: ${props => props.falseColor || "green"};
+  background-color: ${props => props.isFalse ? "red" : "green"};
   min-width: 200px;
   align-items: center;
   border-radius: 10px;

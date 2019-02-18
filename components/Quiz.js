@@ -93,7 +93,7 @@ class Quiz extends Component {
           <Button onPress={() => this.saveAnswer(true)} >
             <ButtonText>Correct</ButtonText>
           </Button>
-          <Button onPress={() => this.saveAnswer(false)} falseColor="#f00">
+          <Button onPress={() => this.saveAnswer(false)} isFalse>
             <ButtonText>Incorrect</ButtonText>
           </Button>
         </CenterView>
