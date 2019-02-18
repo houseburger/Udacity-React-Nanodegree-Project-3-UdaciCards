@@ -3,6 +3,10 @@ import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-nativ
 import { handleAddingCard } from '../actions'
 import { connect } from 'react-redux'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import {
+  Title, InputField,
+  Button, DisabledButton, ButtonText,
+} from './styled'
 
 class NewCard extends Component {
 
@@ -26,12 +30,14 @@ class NewCard extends Component {
     }
 
     addCard(card)
-    //TODO: make sure it only navigates to Home AFTER saving!!!!
+      .then(goBack())
+    // TODO: make sure it only navigates to Home AFTER saving!!!!
     // TODO: check whether saves in AsyncStorage
-    goBack()
+    // goBack()
   }
 
   render() {
+    let { question, answer } = this.state
     return (
       <KeyboardAwareScrollView
         style={styles.container}
@@ -39,24 +45,30 @@ class NewCard extends Component {
         scrollEnabled={ false }
         extraHeight={100}
       >
-        <Text>Please insert the question and answer for this card</Text>
-        <Text style={styles.dude}>DUDE</Text>
-        <Text style={styles.dude}>DUDE</Text>
-        <TextInput
-          style={styles.input}
+        <Title>Please fill out fields to create this card</Title>
+        <InputField
           onChangeText={(text) => this.updateState(text, 'question')}
-          value={this.state.question}
+          value={question}
           placeholder='Question'
         />
-        <TextInput
-          style={styles.input}
+        <InputField
           onChangeText={(text) => this.updateState(text, 'answer')}
-          value={this.state.answer}
+          value={answer}
           placeholder='Answer'
         />
-        <TouchableOpacity style={styles.button} onPress={() => this.handleSubmit()}>
-          <Text>Create Card</Text>
-        </TouchableOpacity>
+        {
+          (question.length <= 1 || answer.length <= 1)
+            ? (
+              <DisabledButton disabled={true}>
+                <ButtonText>Create Card</ButtonText>
+              </DisabledButton>
+            )
+            : (
+              <Button onPress={() => this.handleSubmit()}>
+                <ButtonText>Create Card</ButtonText>
+              </Button>
+            )
+        }
       </KeyboardAwareScrollView>
     )
   }
@@ -66,12 +78,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#f26f28',
   },
-  dude: {
-    margin: 50,
-    padding: 50,
-  },
   input: {
-    // flex: 1,
     backgroundColor: '#b93fb3',
     padding: 10,
     margin: 20,
