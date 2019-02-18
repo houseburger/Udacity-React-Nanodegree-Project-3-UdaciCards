@@ -7,6 +7,7 @@ import {
   CenterView,
   BigText,
   DeckBox,
+  Title, CardDescription,
 } from './styled'
 
 // Data
@@ -61,8 +62,8 @@ class DeckList extends Component {
 
   _renderItem = ({ item }) => (
     <DeckBox onPress={() => this.buttonPressed(item.title)}>
-      <Text>{item.title}</Text>
-      <Text>{this.showDeckLength(item.questions.length)}</Text>
+      <Title>{item.title}</Title>
+      <CardDescription>{this.showDeckLength(item.questions.length)}</CardDescription>
     </DeckBox>
   )
 

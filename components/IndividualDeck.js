@@ -3,6 +3,13 @@ import { View, Text, Platform, StyleSheet, TouchableOpacity } from 'react-native
 import { connect } from 'react-redux'
 import { getDeck } from '../actions'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
+import {
+  CenterView,
+  Button, DisabledButton,
+  ButtonText,
+  Title,
+  CardDescription,
+} from './styled'
 
 class IndividualDeckList extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -57,34 +64,32 @@ class IndividualDeckList extends Component {
     let questionsLength = deck.questions.length
 
     return (
-      <View style={styles.container}>
-        <Text>{deck.title}</Text>
-        <Text>{this.showDeckLength(questionsLength)}</Text>
-        <TouchableOpacity style={styles.button} onPress={() => goToView('NewCard', deck.title)}>
-          <Text>Add Card</Text>
-        </TouchableOpacity>
-        <TouchableOpacity disabled={questionsLength === 0} style={styles.button} onPress={() => goToView('Quiz', deck.title)}>
-        {/* // TODO: already disabled, but add styling for disabled!!! */}
-          <Text>Start a Quiz</Text>
-        </TouchableOpacity>
-      </View>
+      <CenterView>
+        <Title>{deck.title}</Title>
+        <CardDescription>{this.showDeckLength(questionsLength)}</CardDescription>
+        <Button onPress={() => goToView('NewCard', deck.title)}>
+          <ButtonText>Add Card</ButtonText>
+        </Button>
+        {
+          questionsLength === 0
+            ? (
+              <DisabledButton disabled={true}>
+                <ButtonText>Start a Quiz</ButtonText>
+              </DisabledButton>
+            )
+            : (
+              <Button onPress={() => goToView('Quiz', deck.title)}>
+                <ButtonText>Start a Quiz</ButtonText>
+              </Button>
+            )
+        }
+      </CenterView>
     )
   }
 }
 
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#7c53c3',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  button: {
-    backgroundColor: '#7bc043',
-    padding: 10,
-    margin: 20
-  },
   back: {
     flex: 1,
     flexDirection: 'row',
