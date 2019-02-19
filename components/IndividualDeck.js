@@ -43,7 +43,7 @@ class IndividualDeckList extends Component {
   }
 
   state = {
-    animation: new Animated.Value(-50),
+    animation: new Animated.Value(-100),
     alreadyShowed: false,
   }
 
@@ -74,16 +74,17 @@ class IndividualDeckList extends Component {
       const appear = Animated.timing(animation, {
         toValue: 0,
         duration,
-        // delay,
+        delay: 400,
       })
 
       const disappear = Animated.timing(animation, {
-        toValue: -50,
+        toValue: -100,
         duration,
         delay,
       })
 
-      Animated.sequence([appear, disappear]).start()
+      Animated.sequence([appear, disappear])
+        .start(() => console.log('Animation DONE'))
     }
 
     return showNotification && !alreadyShowed
@@ -99,8 +100,10 @@ class IndividualDeckList extends Component {
         {
           this.notificationAnimation()
             ? (
-              <Animated.View style={[{ backgroundColor: "yellow" }, { transform:[{ translateY: animation }] } ]}>
-                <NotificationText>Created new card!</NotificationText>
+              <Animated.View style={[{ transform:[{ translateY: animation }] } ]}>
+                <Notification>
+                  <NotificationText>Created new card for {deck.title}!</NotificationText>
+                </Notification>
               </Animated.View>
             )
             : null
