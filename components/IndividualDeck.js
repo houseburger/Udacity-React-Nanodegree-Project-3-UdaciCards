@@ -43,7 +43,7 @@ class IndividualDeckList extends Component {
   }
 
   state = {
-    fade: new Animated.Value(0),
+    animation: new Animated.Value(-50),
     alreadyShowed: false,
   }
 
@@ -65,34 +65,32 @@ class IndividualDeckList extends Component {
   }
 
   notificationAnimation = () => {
-    const { fade, alreadyShowed } = this.state
+    const { animation, alreadyShowed } = this.state
     const { showNotification } = this.props
 
     if (showNotification && !alreadyShowed) {
-      const duration = 2000;
-      const delay    = 3000;
-      Animated.timing(fade, {
+      const duration = 1000;
+      const delay    = 2500;
+      const appear = Animated.timing(animation, {
+        toValue: 0,
+        duration,
+        // delay,
+      })
+
+      const disappear = Animated.timing(animation, {
         toValue: -50,
         duration,
         delay,
       })
-      .start()
 
-      // setTimeout(() => {
-      //   this.setState({
-      //     fade: new Animated.Value(1),
-      //     alreadyShowed: true
-      //   })
-      // }, (duration + delay))
+      Animated.sequence([appear, disappear]).start()
     }
 
-    console.log('Show Notification? ', showNotification, alreadyShowed)
-
-    return (showNotification === true) && (alreadyShowed === false)
+    return showNotification && !alreadyShowed
   }
 
   render() {
-    let { fade } = this.state
+    let { animation } = this.state
     let { deck, goToView, showNotification } = this.props
     let questionsLength = deck.questions.length
 
@@ -101,7 +99,7 @@ class IndividualDeckList extends Component {
         {
           this.notificationAnimation()
             ? (
-              <Animated.View style={[{ backgroundColor: "yellow" }, { transform:[{ translateY: fade }] } ]}>
+              <Animated.View style={[{ backgroundColor: "yellow" }, { transform:[{ translateY: animation }] } ]}>
                 <NotificationText>Created new card!</NotificationText>
               </Animated.View>
             )
