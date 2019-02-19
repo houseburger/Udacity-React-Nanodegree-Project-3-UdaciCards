@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { View, Text, Platform, TouchableOpacity } from 'react-native'
+import { View, Text, Platform, TouchableOpacity, Animated } from 'react-native'
 import { connect } from 'react-redux'
 import { getDeck } from '../actions'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
@@ -42,6 +42,10 @@ class IndividualDeckList extends Component {
     }
   }
 
+  state = {
+    fade: new Animated.Value(0),
+  }
+
   showDeckLength = (deckLength) => {
     switch(true) {
       case deckLength === 1 :
@@ -59,18 +63,31 @@ class IndividualDeckList extends Component {
     // this.props.dispatch(getDeck(id))
   }
 
+  notificationAnimation = () => {
+    const { fade } = this.state
+    const { showNotification } = this.props
+    Animated.timing(
+      fade, {toValue: 1, duration: 11000}
+    ).start()
+
+    console.log('Show Notification? ', showNotification)
+
+    return showNotification === true
+  }
+
   render() {
+    let { fade } = this.state
     let { deck, goToView, showNotification } = this.props
     let questionsLength = deck.questions.length
 
     return (
       <Fragment>
         {
-          showNotification === true
+          this.notificationAnimation()
             ? (
-              <Notification>
+              <Animated.View style={{ backgroundColor: "yellow", opacity: fade }}>
                 <NotificationText>Created new card!</NotificationText>
-              </Notification>
+              </Animated.View>
             )
             : null
         }
@@ -105,6 +122,8 @@ function mapStateToProps( { decks }, { navigation } ) {
   console.log('decks: ', decks)
   const id = navigation.getParam('id', 'No ID')
   const deck = Object.values(decks).filter(deck => deck.title === id)
+
+  console.log('mapStateToProps: ', navigation.getParam('createdNewCard', false))
 
   return {
     deck: deck[0],

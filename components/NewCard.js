@@ -96,7 +96,10 @@ function mapStateToProps() { return {} } // even if empty, need it to insert bef
 function mapDispatchToProps(dispatch, { navigation }) {
   const id = navigation.getParam('id', 'No ID')
   return {
-    addCard: (card) => dispatch(handleAddingCard(id, card)),
+    addCard: (card) => {
+      console.log('Adding Card...')
+      return dispatch(handleAddingCard(id, card))
+    },
     goBack: () => navigation.navigate('IndividualDeck', {
       id,
       createdNewCard: true, // bool to show notification about new card back in IndividualDeck
