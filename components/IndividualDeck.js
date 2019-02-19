@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { View, Text, Platform, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { getDeck } from '../actions'
@@ -7,6 +7,7 @@ import {
   CenterView,
   Button, DisabledButton, ButtonText, BackButton, BackText,
   Title, CardDescription,
+  Notification, NotificationText,
 } from './styled'
 
 class IndividualDeckList extends Component {
@@ -59,18 +60,28 @@ class IndividualDeckList extends Component {
   }
 
   render() {
-    let { deck, goToView } = this.props
+    let { deck, goToView, showNotification } = this.props
     let questionsLength = deck.questions.length
 
     return (
-      <CenterView>
-        <Title>{deck.title}</Title>
-        <CardDescription>{this.showDeckLength(questionsLength)}</CardDescription>
-        <Button onPress={() => goToView('NewCard', deck.title)}>
-          <ButtonText>Add Card</ButtonText>
-        </Button>
+      <Fragment>
         {
-          questionsLength === 0
+          showNotification === true
+            ? (
+              <Notification>
+                <NotificationText>Created new card!</NotificationText>
+              </Notification>
+            )
+            : null
+        }
+        <CenterView>
+          <Title>{deck.title}</Title>
+          <CardDescription>{this.showDeckLength(questionsLength)}</CardDescription>
+          <Button onPress={() => goToView('NewCard', deck.title)}>
+            <ButtonText>Add Card</ButtonText>
+          </Button>
+          {
+            questionsLength === 0
             ? (
               <DisabledButton disabled={true}>
                 <ButtonText>Start a Quiz</ButtonText>
@@ -81,20 +92,24 @@ class IndividualDeckList extends Component {
                 <ButtonText>Start a Quiz</ButtonText>
               </Button>
             )
-        }
-      </CenterView>
+          }
+        </CenterView>
+      </Fragment>
     )
   }
 }
 
 
 // could also use AsyncStorage functions, but this is better!
-function mapStateToProps( { decks }, props ) {
+function mapStateToProps( { decks }, { navigation } ) {
   console.log('decks: ', decks)
-  const id = props.navigation.getParam('id', 'No ID')
+  const id = navigation.getParam('id', 'No ID')
   const deck = Object.values(decks).filter(deck => deck.title === id)
+
   return {
-    deck: deck[0]
+    deck: deck[0],
+    // whether created new card
+    showNotification: navigation.getParam('createdNewCard', false)
   }
 }
 

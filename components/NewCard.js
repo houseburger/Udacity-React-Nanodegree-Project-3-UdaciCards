@@ -99,6 +99,7 @@ function mapDispatchToProps(dispatch, { navigation }) {
     addCard: (card) => dispatch(handleAddingCard(id, card)),
     goBack: () => navigation.navigate('IndividualDeck', {
       id,
+      createdNewCard: true, // bool to show notification about new card back in IndividualDeck
     }),
   }
 }

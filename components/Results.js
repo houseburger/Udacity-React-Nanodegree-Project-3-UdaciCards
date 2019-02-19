@@ -12,9 +12,11 @@ const Results = (props) => {
   return (
     <QuizGrid>
       <Title>You finished the quiz!</Title>
-      <QuizNumber>Correct Answers:</QuizNumber>
-      <QuizNumber>{correct} out of {total}</QuizNumber>
-      <Percentage>{(100 * correct / total).toFixed()}%</Percentage>
+      <View>
+        <QuizNumber>Correct Answers:</QuizNumber>
+        <QuizNumber>{correct} out of {total}</QuizNumber>
+        <Percentage>{(100 * correct / total).toFixed()}%</Percentage>
+      </View>
       <BottomButtons>
         <Button onPress={() => goToView('Quiz')}>
           <ButtonText>Restart Quiz</ButtonText>

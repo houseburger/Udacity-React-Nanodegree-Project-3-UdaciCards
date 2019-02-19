@@ -69,6 +69,16 @@ export const Percentage = styled.Text`
   text-align: center;
 `
 
+export const Notification = styled.View`
+  background-color: yellow;
+
+`
+
+export const NotificationText = styled.Text`
+  text-align: center;
+  font-size: 24px;
+`
+
 
 export const HeaderButton = styled.TouchableOpacity`
   margin-right: 12px;
