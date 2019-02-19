@@ -44,6 +44,7 @@ class IndividualDeckList extends Component {
 
   state = {
     fade: new Animated.Value(0),
+    alreadyShowed: false,
   }
 
   showDeckLength = (deckLength) => {
@@ -64,15 +65,30 @@ class IndividualDeckList extends Component {
   }
 
   notificationAnimation = () => {
-    const { fade } = this.state
+    const { fade, alreadyShowed } = this.state
     const { showNotification } = this.props
-    Animated.timing(
-      fade, {toValue: 1, duration: 11000}
-    ).start()
 
-    console.log('Show Notification? ', showNotification)
+    if (showNotification && !alreadyShowed) {
+      const duration = 2000;
+      const delay    = 3000;
+      Animated.timing(fade, {
+        toValue: -50,
+        duration,
+        delay,
+      })
+      .start()
 
-    return showNotification === true
+      // setTimeout(() => {
+      //   this.setState({
+      //     fade: new Animated.Value(1),
+      //     alreadyShowed: true
+      //   })
+      // }, (duration + delay))
+    }
+
+    console.log('Show Notification? ', showNotification, alreadyShowed)
+
+    return (showNotification === true) && (alreadyShowed === false)
   }
 
   render() {
@@ -85,7 +101,7 @@ class IndividualDeckList extends Component {
         {
           this.notificationAnimation()
             ? (
-              <Animated.View style={{ backgroundColor: "yellow", opacity: fade }}>
+              <Animated.View style={[{ backgroundColor: "yellow" }, { transform:[{ translateY: fade }] } ]}>
                 <NotificationText>Created new card!</NotificationText>
               </Animated.View>
             )
@@ -122,8 +138,6 @@ function mapStateToProps( { decks }, { navigation } ) {
   console.log('decks: ', decks)
   const id = navigation.getParam('id', 'No ID')
   const deck = Object.values(decks).filter(deck => deck.title === id)
-
-  console.log('mapStateToProps: ', navigation.getParam('createdNewCard', false))
 
   return {
     deck: deck[0],
