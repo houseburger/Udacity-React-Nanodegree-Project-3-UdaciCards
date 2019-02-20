@@ -4,7 +4,7 @@ import { handleAddingCard } from '../actions'
 import { connect } from 'react-redux'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import {
-  BG_COLOR,
+  BG_COLOR, PLACEHOLDER_COLOR,
   Title, InputField, CreateGrid,
   Button, DisabledButton, ButtonText, SubmitButton,
 } from './styled'
@@ -53,11 +53,13 @@ class NewCard extends Component {
                 onChangeText={(text) => this.updateState(text, 'question')}
                 value={question}
                 placeholder='Question'
+                placeholderTextColor={PLACEHOLDER_COLOR}
               />
               <InputField
                 onChangeText={(text) => this.updateState(text, 'answer')}
                 value={answer}
                 placeholder='Answer'
+                placeholderTextColor={PLACEHOLDER_COLOR}
               />
             </View>
             {

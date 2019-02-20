@@ -3,12 +3,13 @@ import { Animated } from 'react-native'
 
 export const BG_COLOR = "#34495e"
 export const DECK_BG = "#3498db"
+export const PLACEHOLDER_COLOR = "#95a5a6"
 const WHITE = "#fff"
 const GREEN = '#2ecc71'
 const DARKGREEN = '#27ae60'
 const RED = '#e74c3c'
 const HEADER_COLOR = "#107BF3"
-const DARKBLUE = '#2c3e50'
+const DARK = '#2c3e50'
 
 export const Button = styled.TouchableOpacity`
   background-color: ${DECK_BG};
@@ -133,7 +134,7 @@ export const InputField = styled.TextInput`
   border: 0;
   background: transparent;
   border-bottom-width: 1px;
-  border-bottom-color: ${DARKBLUE};
+  border-bottom-color: ${DARK};
 `
 
 export const Title = styled(Text)`

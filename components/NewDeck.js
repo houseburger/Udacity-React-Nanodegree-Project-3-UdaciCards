@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 import { handleAddingDeck } from '../actions'
 import { Header } from 'react-navigation'
 import {
-  BG_COLOR,
+  BG_COLOR, PLACEHOLDER_COLOR,
   Title, InputField, CreateGrid,
   Button, DisabledButton, ButtonText,
 } from './styled'
@@ -41,6 +41,7 @@ class NewDeck extends Component {
                 onChangeText={(title) => this.setState({title})}
                 value={this.state.title}
                 placeholder='Title of new deck'
+                placeholderTextColor={PLACEHOLDER_COLOR}
               />
               {
                 title.length <= 1
