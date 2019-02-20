@@ -1,11 +1,16 @@
 import styled from 'styled-components/native'
 import { Animated } from 'react-native'
 
-const BACKGROUND_COLOR = "#f26f28"
+const BG_COLOR = "#3498db"
+const DECK_BG  = "#f39c12"
+const WHITE    = "#fff"
+const GREEN    = '#2ecc71'
+const DARKGREEN = '#27ae60'
+const RED      = '#e74c3c'
+const HEADER_COLOR = "#107BF3"
 
 export const Button = styled.TouchableOpacity`
-  background-color: ${BACKGROUND_COLOR};
-  background-color: ${props => props.isFalse ? "red" : "green"};
+  background-color: ${DECK_BG};
   min-width: 200px;
   align-items: center;
   border-radius: 10px;
@@ -13,62 +18,72 @@ export const Button = styled.TouchableOpacity`
   margin: 20px;
 `
 
-export const DisabledButton = styled(Button)`
-opacity: 0.5;
-background-color: darkgreen;
+// since most of text is white, just make other components inherit this!
+export const Text = styled.Text`
+  color: ${WHITE}
 `
 
-export const ButtonText = styled.Text`
-color: white;
+export const SubmitButton = styled(Button)`
+  background-color: ${GREEN};
+`
+
+export const DisabledButton = styled(Button)`
+opacity: 0.6;
+background-color: ${DARKGREEN};
+`
+
+export const ButtonText = styled(Text)`
 font-size: 24px;
 `
 
 
 // Quiz Component
 export const QuizGrid = styled.View`
-flex: 1;
-justify-content: space-between;
+  flex: 1;
+  justify-content: space-between;
+  background-color: ${BG_COLOR};
 `
 
-export const QuizNumber = styled.Text`
-text-align: center;
-font-size: 28px;
-margin: 10px;
+export const QuizNumber = styled(Text)`
+  text-align: center;
+  font-size: 24px;
+  margin: 10px;
 `
 
 export const QuizTop = styled.View`
   padding: 10px;
-  background-color: orange;
 `
 
 export const QuestionAnswer = Animated.createAnimatedComponent(styled.View`
-  background-color: brown;
+  ${'' /* background-color: brown; */}
   align-items: center;
   flex: 1;
   justify-content: center;
 `)
 
-export const QAText = styled.Text`
+export const QAText = styled(Text)`
   font-size: 34px;
-
 `
 
 export const SwitchText = styled.Text`
   font-size: 24px;
-  margin-top: 14px;
+  margin-top: 28px;
   ${'' /* opacity: 0.8; */}
-  color: darkgrey;
+  color: #ecf0f1;
 `
 
 export const BottomButtons = styled.View`
   padding-bottom: 30px;
-  background-color: lightblue;
 `
+
+export const QuizButton = styled(Button)`
+  background-color: ${props => props.isFalse ? RED : GREEN};
+`
+
 /////////////
 
-export const Percentage = styled.Text`
-  font-size: 50px;
-  color: green;
+export const Percentage = styled(Text)`
+  font-size: 60px;
   text-align: center;
 `
 
@@ -77,7 +92,7 @@ export const Notification = Animated.createAnimatedComponent(styled.View`
   padding: 10px;
 `)
 
-export const NotificationText = styled.Text`
+export const NotificationText = styled(Text)`
   text-align: center;
   font-size: 26px;
 `
@@ -96,14 +111,18 @@ export const BackButton = styled.TouchableOpacity`
 
 export const BackText = styled.Text`
   margin-left: 6px;
-  color: #107BF3;
+  color: ${HEADER_COLOR};
   font-size: 18px;
+`
+
+export const CreateView = styled.View`
+  background-color: ${BG_COLOR};
+  flex: 1;
 `
 
 export const InputField = styled.TextInput`
   padding: 10px;
   margin: 20px;
-  background-color: red;
   font-size: 30px;
   border-radius: 10px;
   min-width: 200px;
@@ -113,39 +132,37 @@ export const InputField = styled.TextInput`
   border-bottom-color: black;
 `
 
-export const Title = styled.Text`
+export const Title = styled(Text)`
   font-size: 34px;
   margin: 10px;
   text-align: center;
 `
 
-export const CardDescription = styled.Text`
+export const CardDescription = styled(Text)`
   font-size: 24px;
   margin-bottom: 10px;
 `
 
 export const Container = styled.View`
   flex: 1;
-  background-color: #f26f28;
-  color: #fff;
+  background-color: ${BG_COLOR};
 `
 
 export const CenterView = styled.View`
   flex: 1;
-  background-color: purple;
+  background-color: ${BG_COLOR};
   align-items: center;
   justify-content: center;
   font-size: 80px;
 `
 
-export const BigText = styled.Text`
+export const BigText = styled(Text)`
   font-size: 50px;
-  color: white;
   text-align: center;
 `
 
 export const DeckBox = styled.TouchableOpacity`
-background-color: #b71845;
+background-color: ${DECK_BG};
 margin: 20px;
 padding: 20px;
 border-radius: 10px;

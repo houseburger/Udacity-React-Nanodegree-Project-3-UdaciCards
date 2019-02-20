@@ -4,8 +4,8 @@ import { handleAddingCard } from '../actions'
 import { connect } from 'react-redux'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import {
-  Title, InputField,
-  Button, DisabledButton, ButtonText,
+  Title, InputField, CreateView,
+  Button, DisabledButton, ButtonText, SubmitButton,
 } from './styled'
 
 class NewCard extends Component {
@@ -45,30 +45,32 @@ class NewCard extends Component {
         scrollEnabled={ false }
         extraHeight={100}
       >
-        <Title>Please fill out fields to create this card</Title>
-        <InputField
-          onChangeText={(text) => this.updateState(text, 'question')}
-          value={question}
-          placeholder='Question'
-        />
-        <InputField
-          onChangeText={(text) => this.updateState(text, 'answer')}
-          value={answer}
-          placeholder='Answer'
-        />
-        {
-          (question.length <= 1 || answer.length <= 1)
-            ? (
-              <DisabledButton disabled={true}>
-                <ButtonText>Create Card</ButtonText>
-              </DisabledButton>
-            )
-            : (
-              <Button onPress={() => this.handleSubmit()}>
-                <ButtonText>Create Card</ButtonText>
-              </Button>
-            )
-        }
+        <CreateView>
+          <Title>Please fill out fields to create this card</Title>
+          <InputField
+            onChangeText={(text) => this.updateState(text, 'question')}
+            value={question}
+            placeholder='Question'
+          />
+          <InputField
+            onChangeText={(text) => this.updateState(text, 'answer')}
+            value={answer}
+            placeholder='Answer'
+          />
+          {
+            (question.length <= 1 || answer.length <= 1)
+              ? (
+                <DisabledButton disabled={true}>
+                  <ButtonText>Create Card</ButtonText>
+                </DisabledButton>
+              )
+              : (
+                <SubmitButton onPress={() => this.handleSubmit()}>
+                  <ButtonText>Create Card</ButtonText>
+                </SubmitButton>
+              )
+          }
+        </CreateView>
       </KeyboardAwareScrollView>
     )
   }
@@ -77,18 +79,8 @@ class NewCard extends Component {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#f26f28',
+    flex: 1,
   },
-  input: {
-    backgroundColor: '#b93fb3',
-    padding: 10,
-    margin: 20,
-  },
-  button: {
-    backgroundColor: '#7fffd4',
-    padding: 10,
-    margin: 20,
-    alignItems: 'center',
-  }
 })
 
 function mapStateToProps() { return {} } // even if empty, need it to insert before mapDispatchToProps

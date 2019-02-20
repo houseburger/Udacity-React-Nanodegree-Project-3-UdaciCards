@@ -10,7 +10,7 @@ import {
 import {
   Container, CenterView, Title,
   QuizNumber, Button, ButtonText, SwitchText, QAText,
-  QuizGrid, QuizTop, QuestionAnswer, BottomButtons,
+  QuizGrid, QuizTop, QuestionAnswer, BottomButtons, QuizButton,
 } from './styled'
 
 class Quiz extends Component {
@@ -120,14 +120,13 @@ class Quiz extends Component {
             <SwitchText>{showAnswer ? 'show question' : 'show answer'}</SwitchText>
           </TouchableOpacity>
         </QuestionAnswer>
-        {/* </Animated.View> */}
         <BottomButtons>
-          <Button onPress={() => this.saveAnswer(true)} >
+          <QuizButton onPress={() => this.saveAnswer(true)} >
             <ButtonText>Correct</ButtonText>
-          </Button>
-          <Button onPress={() => this.saveAnswer(false)} isFalse>
+          </QuizButton>
+          <QuizButton onPress={() => this.saveAnswer(false)} isFalse>
             <ButtonText>Incorrect</ButtonText>
-          </Button>
+          </QuizButton>
         </BottomButtons>
       </QuizGrid>
     )
