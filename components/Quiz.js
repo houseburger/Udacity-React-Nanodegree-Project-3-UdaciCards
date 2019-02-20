@@ -84,14 +84,13 @@ class Quiz extends Component {
   showNextCardAnimation = (animProp, duration) => {
     const resetCard = Animated.timing(animProp, {
       toValue: Dimensions.get('window').width,
-      duration: 10 // do it so fast that cannot see with eye
+      duration: 1 // do it so fast that cannot see with eye
     })
 
     // move card out of screen
-    const showCard = Animated.timing(animProp, {
+    const showCard = Animated.spring(animProp, {
       toValue: 0,
       duration,
-      delay: 300,
     })
 
     Animated.sequence([resetCard, showCard])
@@ -110,7 +109,7 @@ class Quiz extends Component {
           <QuizNumber>{`${currentIndex + 1}/${questions.length}`}</QuizNumber>
         </QuizTop>
         {/* <QuestionAnswer> */}
-        <Animated.View style={[ { backgroundColor: '#f26f28' }, { transform: [{ translateX: positionX }] }, ]}>
+        <QuestionAnswer style={[ { transform: [{ translateX: positionX }] } ]}>
           <QAText>
             {showAnswer ? questions[currentIndex].answer : questions[currentIndex].question}
           </QAText>
@@ -120,8 +119,8 @@ class Quiz extends Component {
           }))}>
             <SwitchText>{showAnswer ? 'show question' : 'show answer'}</SwitchText>
           </TouchableOpacity>
-        {/* </QuestionAnswer> */}
-        </Animated.View>
+        </QuestionAnswer>
+        {/* </Animated.View> */}
         <BottomButtons>
           <Button onPress={() => this.saveAnswer(true)} >
             <ButtonText>Correct</ButtonText>

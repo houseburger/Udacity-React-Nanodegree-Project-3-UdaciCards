@@ -100,11 +100,9 @@ class IndividualDeckList extends Component {
         {
           this.notificationAnimation()
             ? (
-              <Animated.View style={[{ transform:[{ translateY: animation }] } ]}>
-                <Notification>
+              <Notification style={[{ transform:[{ translateY: animation }] } ]}>
                   <NotificationText>Created new card for {deck.title}!</NotificationText>
-                </Notification>
-              </Animated.View>
+              </Notification>
             )
             : null
         }

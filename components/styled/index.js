@@ -1,7 +1,10 @@
 import styled from 'styled-components/native'
+import { Animated } from 'react-native'
+
+const BACKGROUND_COLOR = "#f26f28"
 
 export const Button = styled.TouchableOpacity`
-  background-color: orange;
+  background-color: ${BACKGROUND_COLOR};
   background-color: ${props => props.isFalse ? "red" : "green"};
   min-width: 200px;
   align-items: center;
@@ -38,12 +41,12 @@ export const QuizTop = styled.View`
   background-color: orange;
 `
 
-export const QuestionAnswer = styled.View`
+export const QuestionAnswer = Animated.createAnimatedComponent(styled.View`
   background-color: brown;
   align-items: center;
   flex: 1;
   justify-content: center;
-`
+`)
 
 export const QAText = styled.Text`
   font-size: 34px;
@@ -69,10 +72,10 @@ export const Percentage = styled.Text`
   text-align: center;
 `
 
-export const Notification = styled.View`
+export const Notification = Animated.createAnimatedComponent(styled.View`
   background-color: orange;
   padding: 10px;
-`
+`)
 
 export const NotificationText = styled.Text`
   text-align: center;
@@ -140,6 +143,7 @@ export const BigText = styled.Text`
   color: white;
   text-align: center;
 `
+
 export const DeckBox = styled.TouchableOpacity`
 background-color: #b71845;
 margin: 20px;
