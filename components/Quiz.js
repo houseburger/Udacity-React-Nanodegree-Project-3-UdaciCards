@@ -64,6 +64,7 @@ class Quiz extends Component {
         else{ // quiz is still running, show next card!
           this.setState((prevState) => ({
             ...prevState,
+            showAnswer: false, // so that user reads question first and not answer!
             correctAnswers: isCorrect ? prevState.correctAnswers + 1 : prevState.correctAnswers, // increase correctAnswers if correct
             currentIndex: prevState.currentIndex + 1, // increase currentIndex to show next card
           }))
