@@ -1,4 +1,4 @@
-import { AsyncStorage } from 'react-native'
+import { AsyncStorage, Alert } from 'react-native'
 import { Notifications, Permissions } from 'expo'
 import _ from 'lodash'
 
@@ -71,8 +71,7 @@ function createNotification() {
   }
 }
 
-
-export function setLocalNotification() {
+export function setLocalNotification(View) {
   AsyncStorage.getItem(NOTIFICATION_KEY)
     .then(JSON.parse)
     .then((data) => {
@@ -84,8 +83,8 @@ export function setLocalNotification() {
 
               let tomorrow = new Date()
               tomorrow.setDate(tomorrow.getDate() + 0)
-              tomorrow.setHours(19)
-              tomorrow.setMinutes(0)
+              tomorrow.setHours(10)
+              tomorrow.setMinutes(40)
 
               Notifications.scheduleLocalNotificationAsync(
                 createNotification(),
@@ -97,11 +96,26 @@ export function setLocalNotification() {
 
               AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true))
             }
-            else {
-              // => status = 'undetermined' || 'denied'
-              console.log('Permission for Status is undetermined or denied')
+            else { // status = 'undetermined' || 'denied'
+            // console.log('Permission for Status is undetermined or denied')
+            showAlert()
             }
+          })
+          .catch(() => {
+            showAlert()
           })
       }
     })
+}
+
+function showAlert() {
+  Alert.alert(
+    'No Permission for Notifications',
+    'Please allow notifications in your Settings.',
+    [
+      {text: 'OK', onPress: () => console.log('OK Pressed')},
+    ],
+    {cancelable: false},
+  )
+  console.log('SHOW ALERT')
 }
