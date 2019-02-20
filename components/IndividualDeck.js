@@ -1,12 +1,12 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { View, Text, Platform, TouchableOpacity, Animated } from 'react-native'
 import { connect } from 'react-redux'
 import { getDeck } from '../actions'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 import {
-  CenterView,
+  Container, CenterView,
   Button, DisabledButton, ButtonText, BackButton, BackText,
-  Title, CardDescription,
+  Title, CardDescription, BigText,
   Notification, NotificationText,
 } from './styled'
 
@@ -96,18 +96,18 @@ class IndividualDeckList extends Component {
     let questionsLength = deck.questions.length
 
     return (
-      <Fragment>
+      <Container>
         {
           this.notificationAnimation()
             ? (
               <Notification style={[{ transform:[{ translateY: animation }] } ]}>
-                  <NotificationText>Created new card for {deck.title}!</NotificationText>
+                  <NotificationText>Created new card for {deck.title}! 🎉</NotificationText>
               </Notification>
             )
             : null
         }
         <CenterView>
-          <Title>{deck.title}</Title>
+          <BigText>{deck.title}</BigText>
           <CardDescription>{this.showDeckLength(questionsLength)}</CardDescription>
           <Button onPress={() => goToView('NewCard', deck.title)}>
             <ButtonText>Add Card</ButtonText>
@@ -126,7 +126,7 @@ class IndividualDeckList extends Component {
             )
           }
         </CenterView>
-      </Fragment>
+      </Container>
     )
   }
 }

@@ -34,7 +34,7 @@ background-color: ${DARKGREEN};
 `
 
 export const ButtonText = styled(Text)`
-font-size: 24px;
+font-size: 26px;
 `
 
 
@@ -47,7 +47,7 @@ export const QuizGrid = styled.View`
 
 export const QuizNumber = styled(Text)`
   text-align: center;
-  font-size: 24px;
+  font-size: 28px;
   margin: 10px;
 `
 
@@ -63,7 +63,9 @@ export const QuestionAnswer = Animated.createAnimatedComponent(styled.View`
 `)
 
 export const QAText = styled(Text)`
-  font-size: 34px;
+  font-size: 38px;
+  padding: 10px;
+  text-align: center;
 `
 
 export const SwitchText = styled.Text`
@@ -89,7 +91,7 @@ export const Percentage = styled(Text)`
 `
 
 export const Notification = Animated.createAnimatedComponent(styled.View`
-  background-color: orange;
+  background-color: ${GREEN};
   padding: 10px;
 `)
 
@@ -139,7 +141,7 @@ export const InputField = styled.TextInput`
 `
 
 export const Title = styled(Text)`
-  font-size: 34px;
+  font-size: 38px;
   margin: 10px;
   text-align: center;
 `
@@ -165,6 +167,7 @@ export const CenterView = styled.View`
 export const BigText = styled(Text)`
   font-size: 50px;
   text-align: center;
+  padding: 14px;
 `
 
 export const DeckBox = styled.TouchableOpacity`
