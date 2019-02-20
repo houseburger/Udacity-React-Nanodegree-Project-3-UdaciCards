@@ -98,7 +98,7 @@ export function setLocalNotification(View) {
             }
             else { // status = 'undetermined' || 'denied'
             // console.log('Permission for Status is undetermined or denied')
-            showAlert()
+              showAlert()
             }
           })
           .catch(() => {
@@ -108,14 +108,19 @@ export function setLocalNotification(View) {
     })
 }
 
+let showedAlert = false
+
 function showAlert() {
-  Alert.alert(
-    'No Permission for Notifications',
-    'Please allow notifications in your Settings.',
-    [
-      {text: 'OK', onPress: () => console.log('OK Pressed')},
-    ],
-    {cancelable: false},
-  )
-  console.log('SHOW ALERT')
+  if (showedAlert === false) {
+    Alert.alert(
+      'No Permission for Notifications',
+      'Please allow notifications in your Settings.',
+      [
+        {text: 'OK', onPress: () => console.log('OK Pressed')},
+      ],
+      {cancelable: false},
+    )
+
+    showedAlert = true
+  }
 }
