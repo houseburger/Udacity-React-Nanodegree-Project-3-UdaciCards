@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity, Animated, Dimensions } from 'react-native'
+// import { Dimensions } from 'expo'
 import { connect } from 'react-redux'
 import Results from './Results'
 import {
@@ -17,7 +18,8 @@ class Quiz extends Component {
   state = {
     currentIndex: 0,
     showAnswer: false,
-    correctAnswers: 0
+    correctAnswers: 0,
+    positionX: new Animated.Value(0),
   }
 
   reset = () => {
@@ -26,6 +28,7 @@ class Quiz extends Component {
       currentIndex: 0,
       showAnswer: false,
       correctAnswers: 0,
+      positionX: new Animated.Value(0),
     }))
   }
 
@@ -46,26 +49,57 @@ class Quiz extends Component {
 
 
   saveAnswer = (isCorrect) => {
-    const { currentIndex } = this.state
+    const { currentIndex, positionX } = this.state
     const { deck } = this.props
     const total = deck.questions.length
+    const duration = 300
 
-    // when quiz is over, show quiz results, skip increasing currentIndex
-    if (currentIndex + 1 === total) {
-      this.goToResults(isCorrect, total)
-    }
-    else{ // quiz is still running!
-      this.setState((prevState) => ({
-        ...prevState,
-        correctAnswers: isCorrect ? prevState.correctAnswers + 1 : prevState.correctAnswers, // increase correctAnswers if correct
-        currentIndex: prevState.currentIndex + 1, // increase currentIndex to show next card
-      }))
-    }
+    // move card into screen
+    this.hideCardAnimation(positionX, duration)
+      .start(() => {
+        // when quiz is over, show quiz results, skip increasing currentIndex
+        if (currentIndex + 1 === total) {
+          this.goToResults(isCorrect, total)
+        }
+        else{ // quiz is still running, show next card!
+          this.setState((prevState) => ({
+            ...prevState,
+            correctAnswers: isCorrect ? prevState.correctAnswers + 1 : prevState.correctAnswers, // increase correctAnswers if correct
+            currentIndex: prevState.currentIndex + 1, // increase currentIndex to show next card
+          }))
+
+          this.showNextCardAnimation(positionX, duration)
+        }
+    })
+  }
+
+  hideCardAnimation = (animProp, duration) => {
+    return Animated.timing(animProp, {
+      toValue: (-1 * Dimensions.get('window').width),
+      duration,
+    })
+  }
+
+  showNextCardAnimation = (animProp, duration) => {
+    const resetCard = Animated.timing(animProp, {
+      toValue: Dimensions.get('window').width,
+      duration: 10 // do it so fast that cannot see with eye
+    })
+
+    // move card out of screen
+    const showCard = Animated.timing(animProp, {
+      toValue: 0,
+      duration,
+      delay: 300,
+    })
+
+    Animated.sequence([resetCard, showCard])
+    .start()
   }
 
   render() {
     const { deck, id } = this.props
-    let { currentIndex, showAnswer } = this.state
+    let { currentIndex, showAnswer, positionX } = this.state
     let questions = deck.questions
 
     return (
@@ -74,12 +108,10 @@ class Quiz extends Component {
           <Title>{deck.title}</Title>
           <QuizNumber>{`${currentIndex + 1}/${questions.length}`}</QuizNumber>
         </QuizTop>
-        <QuestionAnswer>
+        {/* <QuestionAnswer> */}
+        <Animated.View style={[ { backgroundColor: '#f26f28' }, { transform: [{ translateX: positionX }] }, ]}>
           <QAText>
-            {showAnswer
-              ? questions[currentIndex].answer
-              : questions[currentIndex].question
-            }
+            {showAnswer ? questions[currentIndex].answer : questions[currentIndex].question}
           </QAText>
           <TouchableOpacity onPress={() => this.setState((prevState) => ({
             ...prevState,
@@ -87,7 +119,8 @@ class Quiz extends Component {
           }))}>
             <SwitchText>{showAnswer ? 'show question' : 'show answer'}</SwitchText>
           </TouchableOpacity>
-        </QuestionAnswer>
+        {/* </QuestionAnswer> */}
+        </Animated.View>
         <BottomButtons>
           <Button onPress={() => this.saveAnswer(true)} >
             <ButtonText>Correct</ButtonText>
