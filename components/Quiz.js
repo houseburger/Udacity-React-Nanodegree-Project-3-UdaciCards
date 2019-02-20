@@ -32,7 +32,7 @@ class Quiz extends Component {
     }))
   }
 
-  goToResults = (isCorrect, total) => {
+  showResults = (isCorrect, total) => {
     const { correctAnswers } = this.state
     const { goToResults } = this.props
 
@@ -54,14 +54,14 @@ class Quiz extends Component {
     const total = deck.questions.length
     const duration = 300
 
-    // move card into screen
-    this.hideCardAnimation(positionX, duration)
-      .start(() => {
-        // when quiz is over, show quiz results, skip increasing currentIndex
-        if (currentIndex + 1 === total) {
-          this.goToResults(isCorrect, total)
-        }
-        else{ // quiz is still running, show next card!
+    // when quiz is over, show quiz results, skip increasing currentIndex
+    if (currentIndex + 1 === total) {
+      this.showResults(isCorrect, total)
+    }
+    else{ // quiz is still running, show next card!
+      // move card into screen
+      this.hideCardAnimation(positionX, duration)
+        .start(() => {
           this.setState((prevState) => ({
             ...prevState,
             showAnswer: false, // so that user reads question first and not answer!
@@ -70,8 +70,8 @@ class Quiz extends Component {
           }))
 
           this.showNextCardAnimation(positionX, duration)
-        }
-    })
+        })
+    }
   }
 
   hideCardAnimation = (animProp, duration) => {
