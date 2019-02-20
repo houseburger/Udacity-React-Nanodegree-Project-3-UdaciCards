@@ -1,7 +1,7 @@
 import styled from 'styled-components/native'
 import { Animated } from 'react-native'
 
-const BG_COLOR = "#34495e"
+export const BG_COLOR = "#34495e"
 export const DECK_BG = "#3498db"
 const WHITE = "#fff"
 const GREEN = '#2ecc71'
@@ -117,11 +117,6 @@ export const BackText = styled.Text`
   margin-left: 6px;
   color: ${HEADER_COLOR};
   font-size: 18px;
-`
-
-export const CreateView = styled.View`
-  background-color: ${BG_COLOR};
-  flex: 1;
 `
 
 export const CreateGrid = styled.View`

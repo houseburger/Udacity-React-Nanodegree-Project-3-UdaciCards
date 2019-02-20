@@ -4,7 +4,8 @@ import { handleAddingCard } from '../actions'
 import { connect } from 'react-redux'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import {
-  Title, InputField, CreateView, CreateGrid,
+  BG_COLOR,
+  Title, InputField, CreateGrid,
   Button, DisabledButton, ButtonText, SubmitButton,
 } from './styled'
 
@@ -39,9 +40,8 @@ class NewCard extends Component {
   render() {
     let { question, answer } = this.state
     return (
-      <CreateView>
         <KeyboardAwareScrollView
-          contentContainerStyle={{ flexGrow: 1 }}
+          contentContainerStyle={{ flexGrow: 1, backgroundColor: BG_COLOR }}
           resetScrollToCoords={{ x: 0, y: 0 }}
           scrollEnabled={ false }
           extraHeight={200}
@@ -75,7 +75,6 @@ class NewCard extends Component {
             }
           </CreateGrid>
         </KeyboardAwareScrollView>
-      </CreateView>
     )
   }
 }
