@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native'
+import { View, Text, TouchableOpacity, TextInput } from 'react-native'
 import { handleAddingCard } from '../actions'
 import { connect } from 'react-redux'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import {
-  Title, InputField, CreateView,
+  Title, InputField, CreateView, CreateGrid,
   Button, DisabledButton, ButtonText, SubmitButton,
 } from './styled'
 
@@ -39,49 +39,48 @@ class NewCard extends Component {
   render() {
     let { question, answer } = this.state
     return (
-      <KeyboardAwareScrollView
-        style={styles.container}
-        resetScrollToCoords={{ x: 0, y: 0 }}
-        scrollEnabled={ false }
-        extraHeight={100}
-      >
-        <CreateView>
-          <Title>Please fill out fields to create this card</Title>
-          <InputField
-            onChangeText={(text) => this.updateState(text, 'question')}
-            value={question}
-            placeholder='Question'
-          />
-          <InputField
-            onChangeText={(text) => this.updateState(text, 'answer')}
-            value={answer}
-            placeholder='Answer'
-          />
-          {
-            (question.length <= 1 || answer.length <= 1)
-              ? (
-                <DisabledButton disabled={true}>
-                  <ButtonText>Create Card</ButtonText>
-                </DisabledButton>
-              )
-              : (
-                <SubmitButton onPress={() => this.handleSubmit()}>
-                  <ButtonText>Create Card</ButtonText>
-                </SubmitButton>
-              )
-          }
-        </CreateView>
-      </KeyboardAwareScrollView>
+      <CreateView>
+        <KeyboardAwareScrollView
+          // style={{ backgroundColor: '#f1c40f' }}
+          contentContainerStyle={{ flex: 1, backgroundColor: '#f1c40f' }}
+          resetScrollToCoords={{ x: 0, y: 0 }}
+          scrollEnabled={ false }
+          extraHeight={100}
+        >
+          <CreateGrid>
+            <Title>Please fill out fields to create this card</Title>
+            <View>
+              <InputField
+                onChangeText={(text) => this.updateState(text, 'question')}
+                value={question}
+                placeholder='Question'
+              />
+              <InputField
+                onChangeText={(text) => this.updateState(text, 'answer')}
+                value={answer}
+                placeholder='Answer'
+              />
+            </View>
+            {
+              (question.length <= 1 || answer.length <= 1)
+                ? (
+                  <DisabledButton disabled={true}>
+                    <ButtonText>Create Card</ButtonText>
+                  </DisabledButton>
+                )
+                : (
+                  <SubmitButton onPress={() => this.handleSubmit()}>
+                    <ButtonText>Create Card</ButtonText>
+                  </SubmitButton>
+                )
+            }
+          </CreateGrid>
+        </KeyboardAwareScrollView>
+      </CreateView>
     )
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#f26f28',
-    flex: 1,
-  },
-})
 
 function mapStateToProps() { return {} } // even if empty, need it to insert before mapDispatchToProps
 

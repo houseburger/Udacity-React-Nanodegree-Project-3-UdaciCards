@@ -8,6 +8,7 @@ const GREEN    = '#2ecc71'
 const DARKGREEN = '#27ae60'
 const RED      = '#e74c3c'
 const HEADER_COLOR = "#107BF3"
+const DARKBLUE = '#2c3e50'
 
 export const Button = styled.TouchableOpacity`
   background-color: ${DECK_BG};
@@ -28,7 +29,7 @@ export const SubmitButton = styled(Button)`
 `
 
 export const DisabledButton = styled(Button)`
-opacity: 0.6;
+opacity: 0.7;
 background-color: ${DARKGREEN};
 `
 
@@ -120,16 +121,23 @@ export const CreateView = styled.View`
   flex: 1;
 `
 
+export const CreateGrid = styled.View`
+  background-color: #8e44ad;
+  flex: 1;
+  ${'' /* padding-bottom: 150px;
+  padding-top: 150px; */}
+`
+
 export const InputField = styled.TextInput`
   padding: 10px;
   margin: 20px;
   font-size: 30px;
-  border-radius: 10px;
+  color: ${WHITE}
   min-width: 200px;
   border: 0;
   background: transparent;
   border-bottom-width: 1px;
-  border-bottom-color: black;
+  border-bottom-color: ${DARKBLUE};
 `
 
 export const Title = styled(Text)`

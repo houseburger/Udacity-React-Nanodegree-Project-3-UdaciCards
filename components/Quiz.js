@@ -108,7 +108,6 @@ class Quiz extends Component {
           <Title>{deck.title}</Title>
           <QuizNumber>{`${currentIndex + 1}/${questions.length}`}</QuizNumber>
         </QuizTop>
-        {/* <QuestionAnswer> */}
         <QuestionAnswer style={[ { transform: [{ translateX: positionX }] } ]}>
           <QAText>
             {showAnswer ? questions[currentIndex].answer : questions[currentIndex].question}
