@@ -122,10 +122,8 @@ export const CreateView = styled.View`
 `
 
 export const CreateGrid = styled.View`
-  background-color: #8e44ad;
   flex: 1;
-  ${'' /* padding-bottom: 150px;
-  padding-top: 150px; */}
+  justify-content: space-around;
 `
 
 export const InputField = styled.TextInput`

@@ -41,11 +41,10 @@ class NewCard extends Component {
     return (
       <CreateView>
         <KeyboardAwareScrollView
-          // style={{ backgroundColor: '#f1c40f' }}
-          contentContainerStyle={{ flex: 1, backgroundColor: '#f1c40f' }}
+          contentContainerStyle={{ flexGrow: 1 }}
           resetScrollToCoords={{ x: 0, y: 0 }}
           scrollEnabled={ false }
-          extraHeight={100}
+          extraHeight={200}
         >
           <CreateGrid>
             <Title>Please fill out fields to create this card</Title>
