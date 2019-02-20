@@ -1,12 +1,12 @@
 import styled from 'styled-components/native'
 import { Animated } from 'react-native'
 
-const BG_COLOR = "#3498db"
-const DECK_BG  = "#f39c12"
-const WHITE    = "#fff"
-const GREEN    = '#2ecc71'
+const BG_COLOR = "#34495e"
+export const DECK_BG = "#3498db"
+const WHITE = "#fff"
+const GREEN = '#2ecc71'
 const DARKGREEN = '#27ae60'
-const RED      = '#e74c3c'
+const RED = '#e74c3c'
 const HEADER_COLOR = "#107BF3"
 const DARKBLUE = '#2c3e50'
 
@@ -86,8 +86,9 @@ export const QuizButton = styled(Button)`
 /////////////
 
 export const Percentage = styled(Text)`
-  font-size: 60px;
+  font-size: 90px;
   text-align: center;
+  padding: 16px;
 `
 
 export const Notification = Animated.createAnimatedComponent(styled.View`

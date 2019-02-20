@@ -3,7 +3,7 @@ import { View, Text, Platform, TouchableOpacity, FlatList } from 'react-native'
 import { connect } from 'react-redux'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 import {
-  Container,
+  Container, DECK_BG,
   CenterView,
   HeaderButton,
   BigText,
@@ -26,12 +26,12 @@ class DeckList extends Component {
             Platform.OS === 'ios'
               ? <Ionicons
                   name={'ios-add'}
-                  color='#fa8072'
+                  color={DECK_BG}
                   size={40}
                 />
               : <MaterialIcons
                   name={'md-add'}
-                  color='#fa8072'
+                  color={DECK_BG}
                   size={40}
                 />
           }
