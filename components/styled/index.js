@@ -6,7 +6,7 @@ export const DECK_BG = "#3498db"
 export const PLACEHOLDER_COLOR = "#95a5a6"
 const WHITE = "#fff"
 const GREEN = '#2ecc71'
-const DARKGREEN = '#27ae60'
+const DISABLE_COLOR = '#2980b9'
 const RED = '#e74c3c'
 const HEADER_COLOR = "#107BF3"
 const DARK = '#2c3e50'
@@ -26,12 +26,12 @@ export const Text = styled.Text`
 `
 
 export const SubmitButton = styled(Button)`
-  background-color: ${GREEN};
+  background-color: ${DECK_BG};
 `
 
 export const DisabledButton = styled(Button)`
 opacity: 0.7;
-background-color: ${DARKGREEN};
+background-color: ${DISABLE_COLOR};
 `
 
 export const ButtonText = styled(Text)`
@@ -72,8 +72,8 @@ export const QAText = styled(Text)`
 export const SwitchText = styled.Text`
   font-size: 24px;
   margin-top: 28px;
-  ${'' /* opacity: 0.8; */}
   color: #ecf0f1;
+  background-color: red;
 `
 
 export const BottomButtons = styled.View`
@@ -81,7 +81,7 @@ export const BottomButtons = styled.View`
 `
 
 export const QuizButton = styled(Button)`
-  background-color: ${props => props.isFalse ? RED : GREEN};
+  background-color: ${props => props.isIncorrect ? RED : GREEN};
 `
 
 /////////////

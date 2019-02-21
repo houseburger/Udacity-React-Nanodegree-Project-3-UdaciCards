@@ -38,13 +38,14 @@ class Quiz extends Component {
 
     // no need to update state.correctAnswers, as will go to Results anyways
     const correct = isCorrect ? (correctAnswers + 1) : correctAnswers
-
     goToResults(correct, total) // go to results view
-
-    this.reset() // reset quiz for when going back to quiz from results
 
     clearNotification() // remove existing notification and set one for tomorrow!
       .then(setLocalNotification)
+
+    setTimeout(() => {
+      this.reset() // reset quiz for when going back to quiz from results
+    }, 700) // don't do immediately, otherwise still see the UI change while going to Results
   }
 
 
@@ -56,7 +57,7 @@ class Quiz extends Component {
 
     // when quiz is over, show quiz results, skip increasing currentIndex
     if (currentIndex + 1 === total) {
-      this.showResults(isCorrect, total)
+      this.showResults(isCorrect, total) // only go to Results once animation is done!
     }
     else{ // quiz is still running, show next card!
       // move card into screen
@@ -123,7 +124,7 @@ class Quiz extends Component {
           <QuizButton onPress={() => this.saveAnswer(true)} >
             <ButtonText>Correct</ButtonText>
           </QuizButton>
-          <QuizButton onPress={() => this.saveAnswer(false)} isFalse>
+          <QuizButton onPress={() => this.saveAnswer(false)} isIncorrect>
             <ButtonText>Incorrect</ButtonText>
           </QuizButton>
         </BottomButtons>
