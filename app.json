@@ -10,11 +10,14 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/icon_1024.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#3498db"
+    },
+    "notification": {
+      "icon": "./assets/icon_96.png"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -23,7 +26,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.pascalhausberger.udacicards"
+    },
+    "android": {
+      "package": "com.pascalhausberger.udacicards"
     }
   }
 }
