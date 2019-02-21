@@ -5,6 +5,7 @@ export const BG_COLOR = "#34495e"
 export const DECK_BG = "#3498db"
 export const PLACEHOLDER_COLOR = "#95a5a6"
 const WHITE = "#fff"
+const DARKWHITE = "#ecf0f1"
 const GREEN = '#2ecc71'
 const DISABLE_COLOR = '#2980b9'
 const RED = '#e74c3c'
@@ -61,19 +62,20 @@ export const QuestionAnswer = Animated.createAnimatedComponent(styled.View`
   align-items: center;
   flex: 1;
   justify-content: center;
+  background-color: ${DECK_BG};
 `)
 
 export const QAText = styled(Text)`
-  font-size: 38px;
+  font-size: 42px;
   padding: 10px;
   text-align: center;
+  min-height: 140px;
 `
 
 export const SwitchText = styled.Text`
   font-size: 24px;
   margin-top: 28px;
-  color: #ecf0f1;
-  background-color: red;
+  color: ${DARKWHITE};
 `
 
 export const BottomButtons = styled.View`
