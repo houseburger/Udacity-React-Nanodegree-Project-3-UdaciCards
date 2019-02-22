@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, Platform, TouchableOpacity, Animated } from 'react-native'
+import { Platform, Animated } from 'react-native'
 import { connect } from 'react-redux'
 import { getDeck } from '../actions'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
@@ -30,7 +30,7 @@ class IndividualDeckList extends Component {
               : (
                 <MaterialIcons
                   name={'arrow-back'}
-                  size={30}
+                  size={34}
                   color='#107BF3'
                   style={{paddingTop: 4}} // without padding the icon is not centered for some reason
                 />
@@ -58,12 +58,6 @@ class IndividualDeckList extends Component {
     }
   }
 
-  componentDidMount() {
-    console.log('Individual Deck View Loaded, WTF??? ')
-    // let id = props.navigation.getParam('id', 'No ID')
-    // this.props.dispatch(getDeck(id))
-  }
-
   notificationAnimation = () => {
     const { animation, alreadyShowed } = this.state
     const { showNotification } = this.props
@@ -84,7 +78,7 @@ class IndividualDeckList extends Component {
       })
 
       Animated.sequence([appear, disappear])
-        .start(() => console.log('Animation DONE'))
+        .start()
     }
 
     return showNotification && !alreadyShowed
@@ -134,13 +128,12 @@ class IndividualDeckList extends Component {
 
 // could also use AsyncStorage functions, but this is better!
 function mapStateToProps( { decks }, { navigation } ) {
-  console.log('decks: ', decks)
   const id = navigation.getParam('id', 'No ID')
   const deck = Object.values(decks).filter(deck => deck.title === id)
 
   return {
     deck: deck[0],
-    // whether created new card
+    // whether created new card or not
     showNotification: navigation.getParam('createdNewCard', false)
   }
 }

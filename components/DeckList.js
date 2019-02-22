@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import { View, Text, Platform, TouchableOpacity, FlatList } from 'react-native'
+import { Platform, FlatList } from 'react-native'
 import { connect } from 'react-redux'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 import {
   Container, DECK_BG,
-  CenterView,
+  CenterView, BigText,
   HeaderButton,
-  BigText,
   DeckBox, Title, CardDescription,
 } from './styled'
 
@@ -70,7 +69,6 @@ class DeckList extends Component {
 
   render() {
     let { loading, decks } = this.props
-    console.log('WTF?: ', Object.values(decks))
 
     return (
       <Container>

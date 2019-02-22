@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity, TextInput } from 'react-native'
+import { View } from 'react-native'
 import { handleAddingCard } from '../actions'
 import { connect } from 'react-redux'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
@@ -31,10 +31,7 @@ class NewCard extends Component {
     }
 
     addCard(card)
-      .then(goBack())
-    // TODO: make sure it only navigates to Home AFTER saving!!!!
-    // TODO: check whether saves in AsyncStorage
-    // goBack()
+      .then(goBack)
   }
 
   render() {

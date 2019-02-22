@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import {
-  View, Text, TextInput, TouchableOpacity,
   KeyboardAvoidingView, ScrollView,
 } from 'react-native'
 import { connect } from 'react-redux'
