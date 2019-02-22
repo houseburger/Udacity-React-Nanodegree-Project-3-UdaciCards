@@ -8,8 +8,8 @@ import { Header } from 'react-navigation'
 import {
   BG_COLOR, PLACEHOLDER_COLOR,
   Title, InputField, CreateGrid,
-  Button, DisabledButton, ButtonText,
 } from './styled'
+import CreateButton from './CreateButton'
 
 class NewDeck extends Component {
 
@@ -42,19 +42,7 @@ class NewDeck extends Component {
                 placeholder='Title of new deck'
                 placeholderTextColor={PLACEHOLDER_COLOR}
               />
-              {
-                title.length <= 1
-                  ? (
-                    <DisabledButton disabled={true}>
-                      <ButtonText>Create Deck</ButtonText>
-                    </DisabledButton>
-                  )
-                  : (
-                    <Button onPress={() => this.handleSubmit()}>
-                      <ButtonText>Create Deck</ButtonText>
-                    </Button>
-                  )
-              }
+              <CreateButton hasValidInput={title.length <= 1} onSubmitting={this.handleSubmit} />
             </CreateGrid>
           </ScrollView>
         </KeyboardAvoidingView>
