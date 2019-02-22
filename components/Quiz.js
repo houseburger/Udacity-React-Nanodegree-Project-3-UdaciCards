@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, Animated, Dimensions } from 'react-native'
-// import { Dimensions } from 'expo'
 import { connect } from 'react-redux'
 import Results from './Results'
 import {

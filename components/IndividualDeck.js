@@ -60,10 +60,10 @@ class IndividualDeckList extends Component {
   }
 
   notificationAnimation = () => {
-    const { animation, alreadyShowed } = this.state
+    const { animation } = this.state
     const { showNotification } = this.props
 
-    if (showNotification && !alreadyShowed) {
+    if (showNotification) {
       const duration = 1000;
       const delay    = 2500;
       const appear = Animated.timing(animation, {
@@ -82,7 +82,7 @@ class IndividualDeckList extends Component {
         .start()
     }
 
-    return showNotification && !alreadyShowed
+    return showNotification
   }
 
   render() {
@@ -107,19 +107,6 @@ class IndividualDeckList extends Component {
           <Button onPress={() => goToView('NewCard', deck.title)}>
             <ButtonText>Add Card</ButtonText>
           </Button>
-          {/* {
-            questionsLength === 0
-            ? (
-              <DisabledButton disabled={true}>
-                <ButtonText>Start a Quiz</ButtonText>
-              </DisabledButton>
-            )
-            : (
-              <Button onPress={() => goToView('Quiz', deck.title)}>
-                <ButtonText>Start a Quiz</ButtonText>
-              </Button>
-            )
-          } */}
           <ButtonChoice text={'Start a Quiz'} shouldEnable={questionsLength > 0} onClicking={() => goToView('Quiz', deck.title)} />
         </CenterView>
       </Container>

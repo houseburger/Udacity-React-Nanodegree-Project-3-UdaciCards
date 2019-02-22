@@ -42,7 +42,8 @@ function mapDispatchToProps(dispatch, { navigation }) {
   const id = navigation.getParam('id', 'No ID')
   return {
     goToView: (view) => navigation.navigate(view, {
-      id
+      id,
+      createdNewCard: false, // otherwise will show notification if created new card beforehand
     }),
   }
 }
