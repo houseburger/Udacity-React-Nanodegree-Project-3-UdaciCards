@@ -73,7 +73,6 @@ function mapDispatchToProps(dispatch, { navigation }) {
   const id = navigation.getParam('id', 'No ID')
   return {
     addCard: (card) => {
-      console.log('Adding Card...')
       return dispatch(handleAddingCard(id, card))
     },
     goBack: () => navigation.navigate('IndividualDeck', {

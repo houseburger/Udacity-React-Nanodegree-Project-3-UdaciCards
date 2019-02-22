@@ -16,6 +16,7 @@ function decks (state = {}, action) {
     case GET_DECK :
       return state[action.id]
     case ADD_DECK :
+      console.log('Stifler SAVE')
       return {
         ...state,
         [action.title]: {

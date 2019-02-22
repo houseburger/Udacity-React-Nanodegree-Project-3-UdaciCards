@@ -25,10 +25,15 @@ export function saveDeckTitle(title) {
   return AsyncStorage.getItem(STORAGE_KEY)
     .then((data) => {
       const decks = JSON.parse(data)
+      console.log('Ashton Kutcher SAVE')
       let deck = {
         [title]: {
           title: title,
-          questions: []
+          questions: [{
+            question: 'Where is my car?',
+            answer: 'Ashton Kutcher'
+          }]
+          // questions:[]
         }
       }
       let newData = { ...decks,  ...deck }
