@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {
-  KeyboardAvoidingView, ScrollView,
+  KeyboardAvoidingView, ScrollView, Alert,
 } from 'react-native'
 import { connect } from 'react-redux'
 import { handleAddingDeck } from '../actions'
@@ -18,10 +18,17 @@ class NewDeck extends Component {
   }
 
   handleSubmit = () => {
-    let { addDeck, goToDeck } = this.props
+    let { addDeck, goToDeck, deckTitles } = this.props
     const { title } = this.state
-    addDeck(title)
-      .then(() => goToDeck(title))
+
+    // Check whether the deck name is unique!
+    if (deckTitles.includes(title)) {
+      showAlert()
+    }
+    else{
+      addDeck(title)
+        .then(() => goToDeck(title))
+    }
   }
 
   render() {
@@ -50,7 +57,24 @@ class NewDeck extends Component {
   }
 }
 
-function mapStateToProps() { return {} }
+
+const showAlert = () => {
+  Alert.alert(
+    'Deck already exists',
+    'A deck with this title already exists.',
+    [
+      {text: 'OK', onPress: () => console.log('OK Pressed')},
+    ],
+    {cancelable: false},
+  )
+}
+
+
+function mapStateToProps({ decks }) {
+  return {
+    deckTitles: Object.keys(decks)
+  }
+}
 
 function mapDispatchToProps(dispatch, { navigation }) {
   return {

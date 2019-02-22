@@ -29,11 +29,7 @@ export function saveDeckTitle(title) {
       let deck = {
         [title]: {
           title: title,
-          questions: [{
-            question: 'Where is my car?',
-            answer: 'Ashton Kutcher'
-          }]
-          // questions:[]
+          questions:[]
         }
       }
       let newData = { ...decks,  ...deck }
@@ -102,7 +98,6 @@ export function setLocalNotification(View) {
               AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true))
             }
             else { // status = 'undetermined' || 'denied'
-            // console.log('Permission for Status is undetermined or denied')
               showAlert()
             }
           })
