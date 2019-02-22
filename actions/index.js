@@ -9,12 +9,6 @@ export const GET_DECK      = 'GET_DECK'
 export const ADD_DECK      = 'ADD_DECK'
 export const ADD_CARD      = 'ADD-CARD'
 
-function receiveDecks(decks) {
-  return {
-    type: RECEIVE_DECKS,
-    decks
-  }
-}
 
 export function handleInitialData(){
   return (dispatch) => {
@@ -43,7 +37,6 @@ export function handleAddingCard(title, card) {
   }
 }
 
-
 export function getDeck(id) {
   return {
     type: GET_DECK,
@@ -51,6 +44,13 @@ export function getDeck(id) {
   }
 }
 
+
+function receiveDecks(decks) {
+  return {
+    type: RECEIVE_DECKS,
+    decks
+  }
+}
 
 function addDeck(title) {
   return {

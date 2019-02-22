@@ -45,7 +45,6 @@ class IndividualDeckList extends Component {
 
   state = {
     animation: new Animated.Value(-100),
-    alreadyShowed: false,
   }
 
   showDeckLength = (deckLength) => {
