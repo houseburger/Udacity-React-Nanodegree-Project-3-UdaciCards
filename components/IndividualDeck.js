@@ -5,10 +5,11 @@ import { getDeck } from '../actions'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 import {
   Container, CenterView,
-  Button, DisabledButton, ButtonText, BackButton, BackText,
+  Button, ButtonText, BackButton, BackText,
   Title, CardDescription, BigText,
   Notification, NotificationText,
 } from './styled'
+import ButtonChoice from './ButtonChoice'
 
 class IndividualDeckList extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -106,7 +107,7 @@ class IndividualDeckList extends Component {
           <Button onPress={() => goToView('NewCard', deck.title)}>
             <ButtonText>Add Card</ButtonText>
           </Button>
-          {
+          {/* {
             questionsLength === 0
             ? (
               <DisabledButton disabled={true}>
@@ -118,7 +119,8 @@ class IndividualDeckList extends Component {
                 <ButtonText>Start a Quiz</ButtonText>
               </Button>
             )
-          }
+          } */}
+          <ButtonChoice text={'Start a Quiz'} shouldEnable={questionsLength > 0} onClicking={() => goToView('Quiz', deck.title)} />
         </CenterView>
       </Container>
     )

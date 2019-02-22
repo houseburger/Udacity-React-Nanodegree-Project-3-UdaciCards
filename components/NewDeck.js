@@ -9,7 +9,7 @@ import {
   BG_COLOR, PLACEHOLDER_COLOR,
   Title, InputField, CreateGrid,
 } from './styled'
-import CreateButton from './CreateButton'
+import ButtonChoice from './ButtonChoice'
 
 class NewDeck extends Component {
 
@@ -38,11 +38,11 @@ class NewDeck extends Component {
               <Title>What should the title of the deck be?</Title>
               <InputField
                 onChangeText={(title) => this.setState({title})}
-                value={this.state.title}
+                value={title}
                 placeholder='Title of new deck'
                 placeholderTextColor={PLACEHOLDER_COLOR}
               />
-              <CreateButton typeText={'Deck'} hasValidInput={title.length <= 1} onSubmitting={this.handleSubmit} />
+              <ButtonChoice text={'Create Deck'} shouldEnable={title.length > 1} onClicking={this.handleSubmit} />
             </CreateGrid>
           </ScrollView>
         </KeyboardAvoidingView>

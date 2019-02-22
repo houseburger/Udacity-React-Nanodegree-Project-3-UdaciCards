@@ -63,6 +63,7 @@ class Quiz extends Component {
       // move card into screen
       this.hideCardAnimation(positionX, duration)
         .start(() => {
+          // only saving after the animation is finished
           this.setState((prevState) => ({
             ...prevState,
             showAnswer: false, // so that user reads question first and not answer!

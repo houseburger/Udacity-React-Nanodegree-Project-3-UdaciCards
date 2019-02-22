@@ -7,7 +7,7 @@ import {
   BG_COLOR, PLACEHOLDER_COLOR,
   Title, InputField, CreateGrid,
 } from './styled'
-import CreateButton from './CreateButton'
+import ButtonChoice from './ButtonChoice'
 
 class NewCard extends Component {
 
@@ -59,7 +59,7 @@ class NewCard extends Component {
                 placeholderTextColor={PLACEHOLDER_COLOR}
               />
             </View>
-            <CreateButton typeText={'Card'} hasValidInput={(question.length <= 1 || answer.length <= 1)} onSubmitting={this.handleSubmit} />
+            <ButtonChoice text={'Create Card'} shouldEnable={(question.length > 1 || answer.length > 1)} onClicking={this.handleSubmit} />
           </CreateGrid>
         </KeyboardAwareScrollView>
     )
