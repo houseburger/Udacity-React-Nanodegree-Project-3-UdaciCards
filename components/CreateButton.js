@@ -5,8 +5,8 @@ import {
 } from './styled'
 
 const CreateButton = (props) => {
-  let { hasValidInput, onSubmitting } = props
-  const text = 'Create Deck'
+  let { hasValidInput, onSubmitting, typeText } = props
+  const text = `Create ${typeText}`
 
   return (
     <Fragment>
@@ -31,6 +31,7 @@ const CreateButton = (props) => {
 CreateButton.propTypes = {
   hasValidInput: PropTypes.bool.isRequired,
   onSubmitting: PropTypes.func.isRequired,
+  typeText: PropTypes.string.isRequired,
 }
 
 export default CreateButton

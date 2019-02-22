@@ -42,7 +42,7 @@ class NewDeck extends Component {
                 placeholder='Title of new deck'
                 placeholderTextColor={PLACEHOLDER_COLOR}
               />
-              <CreateButton hasValidInput={title.length <= 1} onSubmitting={this.handleSubmit} />
+              <CreateButton typeText={'Deck'} hasValidInput={title.length <= 1} onSubmitting={this.handleSubmit} />
             </CreateGrid>
           </ScrollView>
         </KeyboardAvoidingView>
@@ -60,6 +60,5 @@ function mapDispatchToProps(dispatch, { navigation }) {
     })
   }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewDeck)

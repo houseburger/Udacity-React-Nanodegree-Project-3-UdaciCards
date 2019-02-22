@@ -6,8 +6,8 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import {
   BG_COLOR, PLACEHOLDER_COLOR,
   Title, InputField, CreateGrid,
-  Button, DisabledButton, ButtonText, SubmitButton,
 } from './styled'
+import CreateButton from './CreateButton'
 
 class NewCard extends Component {
 
@@ -59,19 +59,7 @@ class NewCard extends Component {
                 placeholderTextColor={PLACEHOLDER_COLOR}
               />
             </View>
-            {
-              (question.length <= 1 || answer.length <= 1)
-                ? (
-                  <DisabledButton disabled={true}>
-                    <ButtonText>Create Card</ButtonText>
-                  </DisabledButton>
-                )
-                : (
-                  <SubmitButton onPress={() => this.handleSubmit()}>
-                    <ButtonText>Create Card</ButtonText>
-                  </SubmitButton>
-                )
-            }
+            <CreateButton typeText={'Card'} hasValidInput={(question.length <= 1 || answer.length <= 1)} onSubmitting={this.handleSubmit} />
           </CreateGrid>
         </KeyboardAwareScrollView>
     )
