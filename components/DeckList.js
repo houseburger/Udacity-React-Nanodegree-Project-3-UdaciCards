@@ -68,7 +68,7 @@ class DeckList extends Component {
   _keyExtractor = (item, index) => item.title
 
   render() {
-    let { loading, decks } = this.props
+    let { loading, sortedDecks } = this.props
 
     return (
       <Container>
@@ -81,7 +81,7 @@ class DeckList extends Component {
             )
             : (
               <FlatList
-                data={Object.values(decks)}
+                data={sortedDecks}
                 renderItem={this._renderItem}
                 keyExtractor={this._keyExtractor}
               />
@@ -94,7 +94,7 @@ class DeckList extends Component {
 
 function mapStateToProps({ decks }) {
   return {
-    decks,
+    sortedDecks: Object.values(decks).sort((a, b) => b.questions.length - a.questions.length),
     loading: (Object.keys(decks).length === 0 && decks.constructor === Object), // check whether data is already loaded
   }
 }
