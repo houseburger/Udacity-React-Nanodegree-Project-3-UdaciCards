@@ -22,6 +22,10 @@ Please use `npm install` and `npm start` to start the project.
 
 Using React version 16.5.0.
 
+### Mobile version
+
+Made specifically to be used as iOS App. 
+
 ### Data
 
 Using both Redux and React Native's AsyncStorage to work with the data.
