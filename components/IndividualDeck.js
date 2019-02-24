@@ -63,12 +63,12 @@ class IndividualDeckList extends Component {
     const { showNotification } = this.props
 
     if (showNotification) {
-      const duration = 1000;
-      const delay    = 2500;
+      const duration = 700;
+      const delay    = 2000;
       const appear = Animated.timing(animation, {
         toValue: 0,
         duration,
-        delay: 400,
+        delay: 200,
       })
 
       const disappear = Animated.timing(animation, {
