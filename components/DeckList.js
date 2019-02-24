@@ -3,11 +3,12 @@ import { Platform, FlatList } from 'react-native'
 import { connect } from 'react-redux'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 import {
-  Container, DECK_BG,
+  Container,
   CenterView, BigText,
   HeaderButton,
   DeckBox, Title, CardDescription,
-} from './styled'
+} from '../styled'
+import { DECK_BG } from '../utils/colors'
 
 // Data
 import { handleInitialData } from '../actions'

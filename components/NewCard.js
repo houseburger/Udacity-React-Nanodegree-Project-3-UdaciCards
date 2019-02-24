@@ -4,9 +4,9 @@ import { handleAddingCard } from '../actions'
 import { connect } from 'react-redux'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import {
-  BG_COLOR, PLACEHOLDER_COLOR,
   Title, InputField, CreateGrid,
-} from './styled'
+} from '../styled'
+import { BG_COLOR, PLACEHOLDER_COLOR, } from '../utils/colors'
 import ButtonChoice from './ButtonChoice'
 
 class NewCard extends Component {

@@ -8,7 +8,7 @@ import {
   Button, ButtonText, BackButton, BackText,
   Title, CardDescription, BigText,
   Notification, NotificationText,
-} from './styled'
+} from '../styled'
 import ButtonChoice from './ButtonChoice'
 
 class IndividualDeckList extends Component {

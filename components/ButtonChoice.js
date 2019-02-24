@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import {
   Button, ButtonText, DisabledButton,
-} from './styled'
+} from '../styled'
 
 const ButtonChoice = (props) => {
   let { shouldEnable, onClicking, text } = props

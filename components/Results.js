@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import {
   QuizGrid, Title, QuizNumber,
   Percentage, Button, ButtonText, BottomButtons,
-} from './styled'
+} from '../styled'
 
 const Results = (props) => {
   let { correct, total, goToView } = props

@@ -6,9 +6,9 @@ import { connect } from 'react-redux'
 import { handleAddingDeck } from '../actions'
 import { Header } from 'react-navigation'
 import {
-  BG_COLOR, PLACEHOLDER_COLOR,
   Title, InputField, CreateGrid,
-} from './styled'
+} from '../styled'
+import { BG_COLOR, PLACEHOLDER_COLOR, } from '../utils/colors'
 import ButtonChoice from './ButtonChoice'
 
 class NewDeck extends Component {

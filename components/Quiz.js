@@ -10,7 +10,7 @@ import {
   Container, CenterView, Title,
   QuizNumber, Button, ButtonText, SwitchText, QAText,
   QuizGrid, QuizTop, QuestionAnswer, BottomButtons, QuizButton,
-} from './styled'
+} from '../styled'
 
 class Quiz extends Component {
 

@@ -1,16 +1,10 @@
 import styled from 'styled-components/native'
 import { Animated } from 'react-native'
-
-export const BG_COLOR = "#34495e"
-export const DECK_BG = "#3498db"
-export const PLACEHOLDER_COLOR = "#95a5a6"
-const WHITE = "#fff"
-const DARKWHITE = "#ecf0f1"
-const GREEN = '#2ecc71'
-const DISABLE_COLOR = '#2980b9'
-const RED = '#e74c3c'
-const HEADER_COLOR = "#107BF3"
-const DARK = '#2c3e50'
+import {
+  DECK_BG, BG_COLOR,
+  WHITE, DARKWHITE, DISABLE_COLOR,
+  GREEN, RED, HEADER_COLOR, DARK,
+} from '../utils/colors'
 
 export const Button = styled.TouchableOpacity`
   background-color: ${DECK_BG};
@@ -23,7 +17,7 @@ export const Button = styled.TouchableOpacity`
 
 // since most of text is white, just make other components inherit this!
 export const Text = styled.Text`
-  color: ${WHITE}
+  color: ${WHITE};
 `
 
 export const SubmitButton = styled(Button)`
@@ -58,11 +52,9 @@ export const QuizTop = styled.View`
 `
 
 export const QuestionAnswer = Animated.createAnimatedComponent(styled.View`
-  ${'' /* background-color: brown; */}
   align-items: center;
   flex: 1;
   justify-content: center;
-  background-color: ${DECK_BG};
 `)
 
 export const QAText = styled(Text)`
