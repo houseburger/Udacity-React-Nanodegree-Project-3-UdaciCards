@@ -1,4 +1,4 @@
-# Udacity-React-Nanodegree-Project-3-UdaciCards
+# Udacity React Nanodegree Project 3: UdaciCards
 React Native project for Udacity's React Nanodegree
 
 
