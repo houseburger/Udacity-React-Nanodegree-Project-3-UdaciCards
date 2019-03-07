@@ -59,7 +59,7 @@ class NewCard extends Component {
                 placeholderTextColor={PLACEHOLDER_COLOR}
               />
             </View>
-            <ButtonChoice text={'Create Card'} shouldEnable={ question.trim() && answer.trim() } onClicking={this.handleSubmit} />
+            <ButtonChoice text={'Create Card'} shouldEnable={ (question.trim().length > 1) && (answer.trim().length > 1) } onClicking={this.handleSubmit} />
           </CreateGrid>
         </KeyboardAwareScrollView>
     )
