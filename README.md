@@ -4,9 +4,10 @@ React Native project for Udacity's React Nanodegree
 
 # Project Description
 
-Project Number 2 for Udacity's React Nanodegree, with a focus on Redux.
+A quiz mobile app for iOS built using React Native and Redux.
+Users can create decks and add cards to a deck. Afterwards, users can quiz themselves on their knowledge and see how well they have done in the quiz. The app will also send users a local notification to remind them to take the quiz, if they haven't taken the quiz that day.
 
-App to create deck cards and quiz oneself using React Native & Redux.
+A project for Udacity's React Nanodegree with a focus on React Native and Redux. 
 
 <br />
 
